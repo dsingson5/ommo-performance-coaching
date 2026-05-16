@@ -1797,6 +1797,114 @@
     pointer-events: none;
     z-index: 0;
   }
+
+  /* ====== Readability pass (keeps Ommo colors, eases eye fatigue) ====== */
+
+  /* 1. Background gets a soft radial depth — same brand blue, less flat.
+        A vignette focuses attention to the center and reduces edge vibration. */
+  body {
+    background:
+      radial-gradient(ellipse 100% 80% at 50% 0%, #2540D9 0%, #1B2DCC 45%, #1726B5 100%) !important;
+    background-attachment: fixed !important;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  /* Kill the busy white grid I added earlier — too much visual noise */
+  body::after { display: none !important; }
+
+  /* 2. Body text uses a slightly cool off-white — pure #FFF on saturated cobalt
+        vibrates the eye; F5F7FF reads as "white" but settles. */
+  p, li, .service-desc, .pkg-desc, .book-tagline,
+  .section-aside, .crew-portal-desc, .service-features li {
+    color: #F0F3FF !important;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+  /* Mute colors get a touch more luminance too */
+  .service-meta-content, .service-meta-label, .book-location .lbl,
+  .pkg-includes .item, .pkg-savings, .pkg-sessions, .pkg-per {
+    color: rgba(240, 243, 255, 0.78) !important;
+  }
+  /* Keep titles crisp white for hierarchy */
+  h1, h2, .section-title, .hero-title, .pkg-headline,
+  .service-title, .book-heading, .pkg-price, .service-price {
+    color: #FFFFFF !important;
+  }
+
+  /* 3. Section padding & paragraph rhythm — more breathing room */
+  .section-pad { padding-top: 6rem; padding-bottom: 6rem; }
+  .section-head { margin-bottom: 3.5rem; }
+  p { margin-bottom: 1.1em; }
+  p:last-child { margin-bottom: 0; }
+
+  /* 4. Card-like elevation for service rows so the long list visually parses */
+  .service {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    margin-bottom: 0.85rem;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .service:hover { background: rgba(255, 255, 255, 0.09); border-color: rgba(255, 255, 255, 0.22); }
+  .service[data-open] { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.25); }
+  .service-head { padding: 1.5rem 1.4rem; }
+  .service-body { background: rgba(255, 255, 255, 0.03); }
+
+  /* 5. Package display card pops off the bg without being noisy */
+  .pkg-display {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+  .pkg-tab {
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    color: rgba(255, 255, 255, 0.78) !important;
+    background: transparent !important;
+  }
+  .pkg-tab.active {
+    background: #FFFFFF !important;
+    color: var(--bg-deepest) !important;
+    border-color: #FFFFFF !important;
+    font-weight: 700;
+  }
+
+  /* 6. Book card grouping — give it real surface */
+  .book-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+    padding: 2.5rem;
+  }
+  .book-ig {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  }
+  .book-ig:hover { background: rgba(255, 255, 255, 0.12) !important; }
+
+  /* 7. Crew portal block gets the same card treatment */
+  .crew-portal {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+  }
+
+  /* 8. Slightly soften the red — same hue, less vibration on royal blue */
+  :root { --red: #ED4438; --red-glow: #FF6256; }
+
+  /* 9. Tighter eyebrows / nicer caps for the small uppercase labels */
+  .section-num, .service-no, .pkg-name, .footer-meta {
+    letter-spacing: 0.18em !important;
+    font-weight: 500 !important;
+  }
+
+  /* 10. Mobile breathing */
+  @media (max-width: 720px) {
+    body { font-size: 16px; }
+    .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+    .pkg-display, .book-card { padding: 1.5rem; }
+  }
 </style>
 </head>
 <body>
