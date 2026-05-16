@@ -10,21 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Hybrid Crew dark palette */
-    --bg-deepest: #06030f;
-    --bg-dark: #0c0817;
-    --bg-elevated: #14101e;
-    --bg-card: #1a1527;
+    /* Ommo bright-blue palette — matches the OMMO logo blue */
+    --bg-deepest: #1B2DCC;   /* page bg — Ommo royal */
+    --bg-dark:    #1731D5;
+    --bg-elevated:#2541DD;
+    --bg-card:    #1A30D2;
 
-    /* Ommo blue — re-tuned for legibility.
-       --green   = the readable accent (lighter periwinkle blue, contrast-safe on dark bg)
-       --green-glow = even lighter highlight
-       --green-deep = original deep cobalt — kept for fills/backgrounds that need brand weight */
-    --green: #8B9CFF;
-    --green-glow: #B5C2FF;
-    --green-deep: #1E2DD5;
-    --green-shadow: rgba(139, 156, 255, 0.32);
-    --green-faint: rgba(139, 156, 255, 0.10);
+    /* Bright-mode accent — WHITE everywhere the original site used --green
+       (text, eyebrows, fills, borders). High contrast against royal-blue bg. */
+    --green: #FFFFFF;
+    --green-glow: rgba(255, 255, 255, 0.96);
+    --green-deep: #FFFFFF;
+    --green-shadow: rgba(255, 255, 255, 0.30);
+    --green-faint: rgba(255, 255, 255, 0.10);
 
     /* Ommo red-star accent */
     --red: #E63329;
@@ -32,17 +30,17 @@
     --red-faint: rgba(230, 51, 41, 0.18);
 
     /* Prestige — Hybrid Crew gold (kept as the cross-brand tie) */
-    --gold: #C9A24C;
-    --gold-faint: rgba(201, 162, 76, 0.15);
+    --gold: #FFD56E;
+    --gold-faint: rgba(255, 213, 110, 0.18);
 
     /* Text */
-    --text: #F5F3EE;
-    --text-mute: #C0BDD2;
-    --text-faint: #8A87A0;
+    --text: #FFFFFF;
+    --text-mute: rgba(255, 255, 255, 0.84);
+    --text-faint: rgba(255, 255, 255, 0.62);
 
     /* Borders */
-    --border: rgba(30, 45, 213, 0.18);
-    --border-soft: rgba(245, 243, 238, 0.06);
+    --border: rgba(255, 255, 255, 0.28);
+    --border-soft: rgba(255, 255, 255, 0.14);
 
     /* Fonts */
     --f-display: 'Anton', 'Arial Narrow', sans-serif;
@@ -1707,6 +1705,98 @@
   .service-features li { line-height: 1.65; }
   /* Make accent-blue text stand out a touch more without changing the brand vibe */
   .section-num, .service-no, .service-price .currency, .pkg-tab.active { letter-spacing: 0.1em; }
+
+  /* ====== Ommo bright-blue override layer ====== */
+  /* Red is the punctuation, used SPARINGLY. */
+  .brand-lockup .x,
+  .loader-mark .x,
+  .footer-brand .x {
+    color: var(--red) !important;
+    opacity: 1 !important;
+    font-style: italic;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(230, 51, 41, 0.45);
+  }
+  /* Bargain "Save ₱X" badge becomes the page's red exclamation point */
+  .pkg-bargain-badge {
+    background: var(--red) !important;
+    color: #FFFFFF !important;
+    border-color: var(--red) !important;
+    box-shadow: 0 0 14px rgba(230, 51, 41, 0.40);
+    font-weight: 700;
+  }
+  .pkg-bargain-badge .currency { color: #FFFFFF !important; }
+  /* The italic accent words in section titles get a soft red glow for hierarchy */
+  .section-title .italic,
+  .pkg-headline .italic,
+  .book-heading .italic {
+    color: #FFFFFF;
+  }
+  /* Currency symbol picks up red for emphasis on the prices */
+  .service-price .currency,
+  .pkg-price .currency {
+    color: var(--red);
+  }
+  /* Form inputs — work on a bright background */
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.32) !important;
+    color: #FFFFFF !important;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border-color: #FFFFFF !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16);
+  }
+  .form-field label { color: rgba(255, 255, 255, 0.78) !important; }
+  /* Submit button: white-on-blue at rest, red-on-white on hover */
+  .submit-btn {
+    background: #FFFFFF !important;
+    color: var(--bg-deepest) !important;
+    border-color: #FFFFFF !important;
+    font-weight: 700;
+  }
+  .submit-btn::before { background: var(--red) !important; }
+  .submit-btn:hover { color: #FFFFFF !important; }
+  /* Crew portal sample box — tint with white over blue, gold tag */
+  .crew-portal-sample {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-left-color: var(--gold) !important;
+    color: rgba(255, 255, 255, 0.90) !important;
+  }
+  .crew-portal-sample .sample-tag { color: var(--gold) !important; }
+  .crew-portal-sample code {
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.32) !important;
+  }
+  /* Brand-lockup OMMO link: white text, red star (already structured) */
+  .brand-lockup a.crew,
+  .brand-lockup a.levels { color: #FFFFFF !important; }
+  /* Header CTA hover state: was bg-deepest text on green bg; now blue text on white bg */
+  .header-cta { color: #FFFFFF; border-color: #FFFFFF; }
+  .header-cta:hover { color: var(--bg-deepest) !important; }
+  /* Selection */
+  ::selection { background: var(--red); color: #FFFFFF; }
+  /* Subtle white-grid texture so the bright-blue page has visual rhythm */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+    z-index: 0;
+  }
 </style>
 </head>
 <body>
