@@ -1905,6 +1905,121 @@
     .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
     .pkg-display, .book-card { padding: 1.5rem; }
   }
+
+  /* ====== Ommo-poster styling pass ====== */
+
+  /* Yellow becomes the tertiary accent token (replacing the cool gold). */
+  :root {
+    --gold: #FFD12D;
+    --gold-deep: #F0B900;
+    --gold-faint: rgba(255, 209, 45, 0.18);
+    --ink: #0A0E1F;   /* near-black for the contrast panel */
+  }
+
+  /* Subtle halftone-dot texture over the radial blue — same vibe as poster 2. */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1.5px);
+    background-size: 14px 14px;
+    background-position: 0 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  /* Anton-style headlines and prices go ITALIC — the Ommo poster signature. */
+  h1, h2, .hero-title, .section-title, .pkg-headline,
+  .service-title, .book-heading, .pkg-price, .pkg-sessions {
+    font-style: italic !important;
+    letter-spacing: -0.01em;
+  }
+  /* Prices italicized + tightened — like the ₱330 / ₱713 treatment in the poster */
+  .service-price, .pkg-price {
+    font-style: italic !important;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+
+  /* Cards: hard-edged frames with thicker borders — the boxed poster look */
+  .service, .pkg-display, .book-card, .crew-portal {
+    border-width: 2px !important;
+    border-radius: 4px !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+  }
+  .service { margin-bottom: 0.9rem; }
+
+  /* "Most-popular" style YELLOW pop — applied to the Crew Portal sample CTA
+     (where new visitors should land), echoing the poster's yellow CTA chip. */
+  .crew-portal-sample {
+    background: rgba(255, 209, 45, 0.10) !important;
+    border-left: 3px solid var(--gold) !important;
+    border-radius: 4px;
+    padding: 1rem 1.1rem !important;
+  }
+  .crew-portal-sample .sample-tag {
+    background: var(--gold) !important;
+    color: var(--ink) !important;
+    padding: 2px 9px;
+    border-radius: 3px;
+    font-weight: 700 !important;
+    margin-right: 0.6rem;
+  }
+  .crew-portal-sample code {
+    background: #FFFFFF !important;
+    color: var(--bg-deepest) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    font-weight: 600;
+  }
+
+  /* Yellow accent on the "30-session FULL" tab — the recommended block.
+     This injects a tiny yellow dot via a pseudo-element so we don't need new markup. */
+  .pkg-tab[data-pkg="full"]::after {
+    content: '';
+    display: inline-block;
+    width: 7px; height: 7px;
+    margin-left: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 6px rgba(255, 209, 45, 0.6);
+    transform: translateY(-1px);
+  }
+
+  /* Booking section gets a near-black contrast panel — like the poster's
+     "OPEN GYM TRIAL" black box that breaks up the blue. */
+  #book {
+    background: linear-gradient(180deg, var(--ink) 0%, #060919 100%);
+    border-top: 2px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.18);
+    position: relative;
+    z-index: 1;
+  }
+  #book .book-card {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+  }
+  #book .book-heading { color: #FFFFFF !important; }
+  #book .book-tagline,
+  #book .book-location .lbl,
+  #book .book-location .sub { color: rgba(255, 255, 255, 0.78) !important; }
+  #book .book-location .val { color: var(--gold) !important; font-style: italic; }
+  #book .form-field label { color: rgba(255, 255, 255, 0.70) !important; }
+  #book .submit-btn {
+    background: var(--gold) !important;
+    color: var(--ink) !important;
+    border-color: var(--gold) !important;
+  }
+  #book .submit-btn:hover { color: #FFFFFF !important; }
+  #book .submit-btn::before { background: var(--red) !important; }
+
+  /* Footer also drops onto the black so the rhythm bookends cleanly */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  /* Pkg-tab active uses yellow underline for the poster look (still white fill) */
+  .pkg-tab.active { box-shadow: inset 0 -3px 0 var(--gold) !important; }
 </style>
 </head>
 <body>
