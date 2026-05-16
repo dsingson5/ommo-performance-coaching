@@ -16,13 +16,15 @@
     --bg-elevated: #14101e;
     --bg-card: #1a1527;
 
-    /* Ommo cobalt — kept under the same --green token so the entire stylesheet
-       (200+ existing references) re-skins without surgery. */
-    --green: #1E2DD5;
-    --green-glow: #5A6CFF;
-    --green-deep: #0A1480;
-    --green-shadow: rgba(30, 45, 213, 0.30);
-    --green-faint: rgba(30, 45, 213, 0.10);
+    /* Ommo blue — re-tuned for legibility.
+       --green   = the readable accent (lighter periwinkle blue, contrast-safe on dark bg)
+       --green-glow = even lighter highlight
+       --green-deep = original deep cobalt — kept for fills/backgrounds that need brand weight */
+    --green: #8B9CFF;
+    --green-glow: #B5C2FF;
+    --green-deep: #1E2DD5;
+    --green-shadow: rgba(139, 156, 255, 0.32);
+    --green-faint: rgba(139, 156, 255, 0.10);
 
     /* Ommo red-star accent */
     --red: #E63329;
@@ -35,8 +37,8 @@
 
     /* Text */
     --text: #F5F3EE;
-    --text-mute: #9A98A8;
-    --text-faint: #5C5868;
+    --text-mute: #C0BDD2;
+    --text-faint: #8A87A0;
 
     /* Borders */
     --border: rgba(30, 45, 213, 0.18);
@@ -1697,6 +1699,14 @@
     border: 1px solid rgba(30, 45, 213, 0.32);
     user-select: all;
   }
+
+  /* ====== Readability lift ====== */
+  body { line-height: 1.7; letter-spacing: 0.005em; -webkit-font-smoothing: antialiased; }
+  p, li { line-height: 1.7; }
+  .section-aside, .service-desc, .pkg-desc, .book-tagline, .crew-portal-desc { line-height: 1.75; font-size: 1.02rem; }
+  .service-features li { line-height: 1.65; }
+  /* Make accent-blue text stand out a touch more without changing the brand vibe */
+  .section-num, .service-no, .service-price .currency, .pkg-tab.active { letter-spacing: 0.1em; }
 </style>
 </head>
 <body>
@@ -2037,7 +2047,7 @@
       <div class="service-head">
         <div class="service-no">— 01 —</div>
         <div class="service-title">Hyrox Full <span class="italic">Simulation</span></div>
-        <div class="service-price"><span class="currency">₱</span>8,500</div>
+        <div class="service-price"><span class="currency">₱</span>3,900</div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2180,7 +2190,7 @@
       <div class="service-head">
         <div class="service-no">— 05 —</div>
         <div class="service-title">Lactate <span class="italic">Threshold Testing</span></div>
-        <div class="service-price"><span class="currency">₱</span>3,500</div>
+        <div class="service-price"><span class="currency">₱</span>4,500</div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2356,7 +2366,7 @@
       Already coaching with David? Enter the Hybrid Crew portal for your weekly programming, workouts, and progress logs.
     </div>
     <div class="crew-portal-sample">
-      <span class="sample-tag">✦ Sample</span>Curious what the coaching looks like? Enter <code>LevelsHyroxPT-sample</code> at the Hybrid Crew password box to preview a sample week.
+      <span class="sample-tag">✦ Sample</span>Curious what the coaching looks like? Enter <code>OmmoHyroxPC-sample</code> at the Hybrid Crew password box to preview a sample week.
     </div>
   </div>
   <a href="https://dsingson5.github.io/hybrid-crew/enter.html" target="_blank" rel="noopener" class="crew-portal-btn">
@@ -2518,12 +2528,12 @@
       showValue: true,
       valueLines: [
         { label: '20 sessions at base rate', value: '₱60,000' },
-        { label: 'Lactate threshold test', value: '₱3,500' },
+        { label: 'Lactate threshold test', value: '₱4,500' },
         { label: 'Programming + 3 sims included', value: '₱10,000' },
       ],
-      totalValue: '₱73,500',
+      totalValue: '₱74,500',
       yourPrice: '₱50,000',
-      bargain: '23,500',
+      bargain: '24,500',
     },
     full: {
       name: '— 30-SESSION FULL',
@@ -2537,12 +2547,12 @@
       showValue: true,
       valueLines: [
         { label: '30 sessions at base rate', value: '₱90,000' },
-        { label: 'Hyrox Full Simulation Day', value: '₱8,500' },
+        { label: 'Hyrox Full Simulation Day', value: '₱3,900' },
         { label: 'Lactate test + taper + debrief', value: '₱12,000' },
       ],
-      totalValue: '₱110,500',
+      totalValue: '₱105,900',
       yourPrice: '₱70,500',
-      bargain: '40,000',
+      bargain: '35,400',
     },
   };
 
