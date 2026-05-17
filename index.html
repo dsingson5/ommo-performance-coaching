@@ -3923,24 +3923,40 @@
     const msg = bkFormatMsg(form);
     if (navigator.clipboard) { try { navigator.clipboard.writeText(msg); } catch(e){} }
     if (channel === 'email') {
-      const data = new FormData(form);
-      data.set('_subject', 'Ommo Athletica, Greenhills inquiry: ' + (form.name.value || 'New'));
-      data.set('_template', 'table');
-      data.set('_captcha', 'false');
-      data.set('_message', msg);
+      const nameVal = (form.name.value || '').trim();
+      const contactVal = (form.contact.value || '').trim();
+      const looksLikeEmail = contactVal.indexOf('@') > -1;
+      const payload = {
+        access_key: '302a7ace-2087-4088-8c6f-f213c36c5075',
+        subject: 'Ommo Athletica, Greenhills inquiry: ' + (nameVal || 'New'),
+        from_name: nameVal || 'Website inquiry',
+        email: looksLikeEmail ? contactVal : 'noreply@dsingson5.github.io',
+        name: nameVal,
+        contact_info: contactVal,
+        interest: form.interest.value || '',
+        goal: (form.goal.value || '').trim(),
+        message: msg,
+        site: 'Ommo Athletica, Greenhills',
+        botcheck: ''
+      };
       const btn = document.querySelector('[data-bk-channel="email"] span');
       if (btn) btn.textContent = 'Sending...';
-      fetch('https://formsubmit.co/ajax/david.singson@gmail.com', {
+      fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
       }).then(function(r){ return r.json(); }).then(function(d){
-        bkSetStatus('Sent! David will reply within 24 hours.<br><span style="color:var(--text-mute);font-size:0.85em;">(If this is your first submission, please also check your inbox \u2014 the email service requires a one-time activation by David.)</span>');
-        if (btn) btn.textContent = '\u2713 Email sent';
-        form.reset();
-        setTimeout(function(){ if (btn) btn.textContent = 'Send via Email'; }, 5000);
+        if (d && d.success) {
+          bkSetStatus('Sent! David will reply within 24 hours.');
+          if (btn) btn.textContent = '\u2713 Email sent';
+          form.reset();
+          setTimeout(function(){ if (btn) btn.textContent = 'Send via Email'; }, 6000);
+        } else {
+          bkSetStatus('Could not send via email (' + (d && d.message ? d.message : 'unknown error') + '). Try one of the direct-message buttons below.');
+          if (btn) btn.textContent = 'Send via Email';
+        }
       }).catch(function(e){
-        bkSetStatus('Could not send via email \u2014 please use one of the direct-message buttons below.');
+        bkSetStatus('Could not reach the email service. Try one of the direct-message buttons below.');
         if (btn) btn.textContent = 'Send via Email';
       });
       return;
