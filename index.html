@@ -10,37 +10,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Ommo bright-blue palette — matches the OMMO logo blue */
-    --bg-deepest: #1B2DCC;   /* page bg — Ommo royal */
-    --bg-dark:    #1731D5;
-    --bg-elevated:#2541DD;
-    --bg-card:    #1A30D2;
+    /* Hybrid Crew dark palette */
+    --bg-deepest: #06030f;
+    --bg-dark: #0c0817;
+    --bg-elevated: #14101e;
+    --bg-card: #1a1527;
 
-    /* Bright-mode accent — WHITE everywhere the original site used --green
-       (text, eyebrows, fills, borders). High contrast against royal-blue bg. */
-    --green: #FFFFFF;
-    --green-glow: rgba(255, 255, 255, 0.96);
-    --green-deep: #FFFFFF;
-    --green-shadow: rgba(255, 255, 255, 0.30);
-    --green-faint: rgba(255, 255, 255, 0.10);
+    /* Levels green */
+    --green: #A3CC2E;
+    --green-glow: #C8E670;
+    --green-deep: #5A7818;
+    --green-shadow: rgba(163, 204, 46, 0.25);
+    --green-faint: rgba(163, 204, 46, 0.08);
 
-    /* Ommo red-star accent */
-    --red: #E63329;
-    --red-glow: #FF5747;
-    --red-faint: rgba(230, 51, 41, 0.18);
-
-    /* Prestige — Hybrid Crew gold (kept as the cross-brand tie) */
-    --gold: #FFD56E;
-    --gold-faint: rgba(255, 213, 110, 0.18);
+    /* Prestige */
+    --gold: #C9A24C;
+    --gold-faint: rgba(201, 162, 76, 0.15);
 
     /* Text */
-    --text: #FFFFFF;
-    --text-mute: rgba(255, 255, 255, 0.84);
-    --text-faint: rgba(255, 255, 255, 0.62);
+    --text: #F5F3EE;
+    --text-mute: #9A98A8;
+    --text-faint: #5C5868;
 
     /* Borders */
-    --border: rgba(255, 255, 255, 0.28);
-    --border-soft: rgba(255, 255, 255, 0.14);
+    --border: rgba(163, 204, 46, 0.12);
+    --border-soft: rgba(245, 243, 238, 0.06);
 
     /* Fonts */
     --f-display: 'Anton', 'Arial Narrow', sans-serif;
@@ -191,6 +185,44 @@
     border-radius: 50%;
     box-shadow: 0 0 8px var(--green);
   }
+  .brand-lockup a.crew,
+  .brand-lockup a.levels {
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s, color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .brand-lockup a.crew:hover { opacity: 0.78; }
+  .brand-lockup a.levels:hover { opacity: 0.78; transform: translateY(-1px); }
+  .crew-portal-sample {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    background: rgba(212,168,104,0.05);
+    border-left: 2px solid var(--green, #c9a961);
+    border-radius: 3px;
+    font-size: 0.9rem;
+    color: var(--text-mute, #b8b3a3);
+    line-height: 1.55;
+  }
+  .crew-portal-sample .sample-tag {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--green, #c9a961);
+    margin-right: 0.5rem;
+    text-transform: uppercase;
+  }
+  .crew-portal-sample code {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    background: rgba(212,168,104,0.12);
+    color: var(--text, #f0ead8);
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 0.88em;
+    border: 1px solid rgba(212,168,104,0.25);
+    user-select: all;
+  }
+
 
   .header-cta {
     font-family: var(--f-body);
@@ -954,7 +986,7 @@
     overflow: hidden;
     transition: max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .service.open .service-body { max-height: 800px; }
+  .service.open .service-body { max-height: 3200px; }
 
   .service-inner {
     padding-top: 2.5rem;
@@ -1204,28 +1236,52 @@
     text-transform: uppercase;
     margin-bottom: 0.5rem;
   }
-  .pkg-price {
+  /* Per-session is the PRIMARY display (large) */
+  .pkg-per {
     font-family: var(--f-display);
-    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    font-size: clamp(2.8rem, 5.5vw, 4.4rem);
     line-height: 1;
     color: var(--text);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.6rem;
+    word-spacing: -0.04em;
   }
-  .pkg-price .currency {
-    font-size: 0.45em;
-    color: var(--green);
-    margin-right: 0.15em;
-    vertical-align: top;
-    line-height: 1.2;
-    display: inline-block;
-  }
-  .pkg-per {
+  .pkg-per .per-suffix {
     font-family: var(--f-serif);
     font-style: italic;
     color: var(--green);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 0.32em;
+    letter-spacing: 0.04em;
+    margin-left: 0.4em;
+    vertical-align: baseline;
+    white-space: nowrap;
+  }
+  /* Total is the SECONDARY display (small) */
+  .pkg-price {
+    font-family: var(--f-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+    color: var(--text-mute);
+    margin-bottom: 1.8rem;
+    text-transform: uppercase;
+  }
+  .pkg-price .total-label {
+    color: var(--text-faint);
+    margin-right: 0.5em;
+  }
+  .pkg-price .currency {
+    font-size: 1em;
+    color: var(--green);
+    margin-right: 0.1em;
+    font-weight: 500;
+  }
+  .pkg-price #pkgPrice,
+  .pkg-price #runPkgPrice,
+  .pkg-price #scPkgPrice {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 1.05em;
   }
   .pkg-savings {
     font-family: var(--f-mono);
@@ -1648,378 +1704,638 @@
     footer { padding: 2rem 1.25rem; flex-direction: column; align-items: flex-start; }
   }
 
-  /* ====== Ommo-specific additions ====== */
-  .brand-lockup a.crew,
-  .brand-lockup a.levels {
-    text-decoration: none;
-    cursor: pointer;
-    transition: opacity 0.2s, color 0.2s, transform 0.2s;
-    display: inline-flex;
-    align-items: center;
+  /* ===================== SIM TIERS (consolidated sim card) ===================== */
+  .sim-tier {
+    margin: 1.75rem 0;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: rgba(163, 204, 46, 0.03);
   }
-  .brand-lockup a.crew:hover { opacity: 0.78; }
-  .brand-lockup a.levels { gap: 0.35em; }
-  .brand-lockup a.levels:hover { opacity: 0.85; transform: translateY(-1px); }
-  .brand-lockup .ommo-star,
-  .footer-brand .ommo-star {
-    color: var(--red);
-    font-size: 0.85em;
-    text-shadow: 0 0 8px rgba(230, 51, 41, 0.55);
-    display: inline-block;
-    transform: translateY(-1px);
+  .sim-tier-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--border);
   }
-  .loader-mark .name span { display: inline-block; }
-  .crew-portal-sample {
-    margin-top: 1rem;
-    padding: 0.85rem 1rem;
-    background: rgba(30, 45, 213, 0.06);
-    border-left: 2px solid var(--green);
-    border-radius: 3px;
-    font-size: 0.9rem;
+  .sim-tier-name {
+    font-family: var(--f-display);
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    color: var(--text);
+  }
+  .sim-tier-price {
+    font-family: var(--f-mono);
+    font-size: 0.95rem;
+    color: var(--green);
+    font-weight: 500;
+  }
+  .sim-tier p {
     color: var(--text-mute);
+    font-size: 0.92rem;
+    margin-bottom: 0.6rem;
     line-height: 1.55;
   }
-  .crew-portal-sample .sample-tag {
-    font-family: var(--f-display);
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    color: var(--gold);
-    margin-right: 0.5rem;
-    text-transform: uppercase;
+  .sim-tier .service-features {
+    margin-top: 0.4rem;
   }
-  .crew-portal-sample code {
-    font-family: var(--f-mono);
-    background: rgba(30, 45, 213, 0.14);
-    color: var(--text);
-    padding: 2px 7px;
-    border-radius: 3px;
-    font-size: 0.88em;
-    border: 1px solid rgba(30, 45, 213, 0.32);
-    user-select: all;
+  .sim-tier .service-features li {
+    font-size: 0.88rem;
   }
 
-  /* ====== Readability lift ====== */
-  body { line-height: 1.7; letter-spacing: 0.005em; -webkit-font-smoothing: antialiased; }
-  p, li { line-height: 1.7; }
-  .section-aside, .service-desc, .pkg-desc, .book-tagline, .crew-portal-desc { line-height: 1.75; font-size: 1.02rem; }
-  .service-features li { line-height: 1.65; }
-  /* Make accent-blue text stand out a touch more without changing the brand vibe */
-  .section-num, .service-no, .service-price .currency, .pkg-tab.active { letter-spacing: 0.1em; }
-
-  /* ====== Ommo bright-blue override layer ====== */
-  /* Red is the punctuation, used SPARINGLY. */
-  .brand-lockup .x,
-  .loader-mark .x,
-  .footer-brand .x {
-    color: var(--red) !important;
-    opacity: 1 !important;
-    font-style: italic;
-    font-weight: 600;
-    text-shadow: 0 0 8px rgba(230, 51, 41, 0.45);
-  }
-  /* Bargain "Save ₱X" badge becomes the page's red exclamation point */
-  .pkg-bargain-badge {
-    background: var(--red) !important;
-    color: #FFFFFF !important;
-    border-color: var(--red) !important;
-    box-shadow: 0 0 14px rgba(230, 51, 41, 0.40);
-    font-weight: 700;
-  }
-  .pkg-bargain-badge .currency { color: #FFFFFF !important; }
-  /* The italic accent words in section titles get a soft red glow for hierarchy */
-  .section-title .italic,
-  .pkg-headline .italic,
-  .book-heading .italic {
-    color: #FFFFFF;
-  }
-  /* Currency symbol picks up red for emphasis on the prices */
-  .service-price .currency,
-  .pkg-price .currency {
-    color: var(--red);
-  }
-  /* Form inputs — work on a bright background */
-  .form-field input,
-  .form-field select,
-  .form-field textarea {
-    background: rgba(255, 255, 255, 0.10) !important;
-    border: 1px solid rgba(255, 255, 255, 0.32) !important;
-    color: #FFFFFF !important;
-  }
-  .form-field input::placeholder,
-  .form-field textarea::placeholder {
-    color: rgba(255, 255, 255, 0.55);
-  }
-  .form-field input:focus,
-  .form-field select:focus,
-  .form-field textarea:focus {
-    background: rgba(255, 255, 255, 0.16) !important;
-    border-color: #FFFFFF !important;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16);
-  }
-  .form-field label { color: rgba(255, 255, 255, 0.78) !important; }
-  /* Submit button: white-on-blue at rest, red-on-white on hover */
-  .submit-btn {
-    background: #FFFFFF !important;
-    color: var(--bg-deepest) !important;
-    border-color: #FFFFFF !important;
-    font-weight: 700;
-  }
-  .submit-btn::before { background: var(--red) !important; }
-  .submit-btn:hover { color: #FFFFFF !important; }
-  /* Crew portal sample box — tint with white over blue, gold tag */
-  .crew-portal-sample {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border-left-color: var(--gold) !important;
-    color: rgba(255, 255, 255, 0.90) !important;
-  }
-  .crew-portal-sample .sample-tag { color: var(--gold) !important; }
-  .crew-portal-sample code {
-    background: rgba(255, 255, 255, 0.18) !important;
-    color: #FFFFFF !important;
-    border-color: rgba(255, 255, 255, 0.32) !important;
-  }
-  /* Brand-lockup OMMO link: white text, red star (already structured) */
-  .brand-lockup a.crew,
-  .brand-lockup a.levels { color: #FFFFFF !important; }
-  /* Header CTA hover state: was bg-deepest text on green bg; now blue text on white bg */
-  .header-cta { color: #FFFFFF; border-color: #FFFFFF; }
-  .header-cta:hover { color: var(--bg-deepest) !important; }
-  /* Selection */
-  ::selection { background: var(--red); color: #FFFFFF; }
-  /* Subtle white-grid texture so the bright-blue page has visual rhythm */
-  body::after {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-    background-size: 64px 64px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ====== Readability pass (keeps Ommo colors, eases eye fatigue) ====== */
-
-  /* 1. Background gets a soft radial depth — same brand blue, less flat.
-        A vignette focuses attention to the center and reduces edge vibration. */
-  body {
-    background:
-      radial-gradient(ellipse 100% 80% at 50% 0%, #2540D9 0%, #1B2DCC 45%, #1726B5 100%) !important;
-    background-attachment: fixed !important;
-    font-size: 17px;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-  }
-  /* Kill the busy white grid I added earlier — too much visual noise */
-  body::after { display: none !important; }
-
-  /* 2. Body text uses a slightly cool off-white — pure #FFF on saturated cobalt
-        vibrates the eye; F5F7FF reads as "white" but settles. */
-  p, li, .service-desc, .pkg-desc, .book-tagline,
-  .section-aside, .crew-portal-desc, .service-features li {
-    color: #F0F3FF !important;
-    line-height: 1.8;
-    font-weight: 400;
-  }
-  /* Mute colors get a touch more luminance too */
-  .service-meta-content, .service-meta-label, .book-location .lbl,
-  .pkg-includes .item, .pkg-savings, .pkg-sessions, .pkg-per {
-    color: rgba(240, 243, 255, 0.78) !important;
-  }
-  /* Keep titles crisp white for hierarchy */
-  h1, h2, .section-title, .hero-title, .pkg-headline,
-  .service-title, .book-heading, .pkg-price, .service-price {
-    color: #FFFFFF !important;
-  }
-
-  /* 3. Section padding & paragraph rhythm — more breathing room */
-  .section-pad { padding-top: 6rem; padding-bottom: 6rem; }
-  .section-head { margin-bottom: 3.5rem; }
-  p { margin-bottom: 1.1em; }
-  p:last-child { margin-bottom: 0; }
-
-  /* 4. Card-like elevation for service rows so the long list visually parses */
-  .service {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 6px;
-    margin-bottom: 0.85rem;
-    transition: background 0.25s, border-color 0.25s;
-  }
-  .service:hover { background: rgba(255, 255, 255, 0.09); border-color: rgba(255, 255, 255, 0.22); }
-  .service[data-open] { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.25); }
-  .service-head { padding: 1.5rem 1.4rem; }
-  .service-body { background: rgba(255, 255, 255, 0.03); }
-
-  /* 5. Package display card pops off the bg without being noisy */
-  .pkg-display {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 8px;
-    padding: 2rem;
-  }
-  .pkg-tab {
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    color: rgba(255, 255, 255, 0.78) !important;
-    background: transparent !important;
-  }
-  .pkg-tab.active {
-    background: #FFFFFF !important;
-    color: var(--bg-deepest) !important;
-    border-color: #FFFFFF !important;
-    font-weight: 700;
-  }
-
-  /* 6. Book card grouping — give it real surface */
-  .book-card {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 8px;
-    padding: 2.5rem;
-  }
-  .book-ig {
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  }
-  .book-ig:hover { background: rgba(255, 255, 255, 0.12) !important; }
-
-  /* 7. Crew portal block gets the same card treatment */
-  .crew-portal {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 8px;
-  }
-
-  /* 8. Slightly soften the red — same hue, less vibration on royal blue */
-  :root { --red: #ED4438; --red-glow: #FF6256; }
-
-  /* 9. Tighter eyebrows / nicer caps for the small uppercase labels */
-  .section-num, .service-no, .pkg-name, .footer-meta {
-    letter-spacing: 0.18em !important;
-    font-weight: 500 !important;
-  }
-
-  /* 10. Mobile breathing */
-  @media (max-width: 720px) {
-    body { font-size: 16px; }
-    .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
-    .pkg-display, .book-card { padding: 1.5rem; }
-  }
-
-  /* ====== Ommo-poster styling pass ====== */
-
-  /* Yellow becomes the tertiary accent token (replacing the cool gold). */
+  /* ===================== CYCLE-CENTRIC FEMININE PALETTE ===================== */
   :root {
-    --gold: #FFD12D;
-    --gold-deep: #F0B900;
-    --gold-faint: rgba(255, 209, 45, 0.18);
-    --ink: #0A0E1F;   /* near-black for the contrast panel */
+    --rose: #E8B4C8;
+    --rose-glow: #F5C6D6;
+    --rose-deep: #C88AA0;
+    --blush: #F7E1E9;
+    --rose-faint: rgba(232, 180, 200, 0.08);
+    --rose-shadow: rgba(232, 180, 200, 0.3);
+    --plum: #8B5A6F;
   }
 
-  /* Subtle halftone-dot texture over the radial blue — same vibe as poster 2. */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1.5px);
-    background-size: 14px 14px;
-    background-position: 0 0;
+  #cycle {
+    position: relative;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(232, 180, 200, 0.07), transparent 55%),
+      radial-gradient(ellipse at 85% 80%, rgba(232, 180, 200, 0.045), transparent 55%),
+      linear-gradient(180deg, rgba(247, 225, 233, 0.025), transparent 30%);
+  }
+  #cycle::before {
+    content: '❀';
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    font-family: var(--f-serif);
+    font-style: italic;
+    color: var(--rose);
+    font-size: 2.4rem;
+    opacity: 0.35;
     pointer-events: none;
-    z-index: 0;
-    opacity: 0.7;
+    z-index: 1;
+  }
+  #cycle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rose), transparent);
+    opacity: 0.45;
+  }
+  #cycle > * { position: relative; z-index: 2; }
+
+  #cycle .section-num {
+    color: var(--rose);
+    letter-spacing: 0.32em;
+  }
+  #cycle .section-title .italic {
+    color: var(--rose-glow);
+    font-style: italic;
+  }
+  #cycle .section-aside {
+    color: var(--text-mute);
   }
 
-  /* Anton-style headlines and prices go ITALIC — the Ommo poster signature. */
-  h1, h2, .hero-title, .section-title, .pkg-headline,
-  .service-title, .book-heading, .pkg-price, .pkg-sessions {
-    font-style: italic !important;
-    letter-spacing: -0.01em;
+  #cycle .coach-role {
+    color: var(--rose);
+    font-family: var(--f-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    text-transform: none;
   }
-  /* Prices italicized + tightened — like the ₱330 / ₱713 treatment in the poster */
-  .service-price, .pkg-price {
-    font-style: italic !important;
-    font-weight: 700;
+
+  #cycle .coach-bio {
+    border-left: 1px solid rgba(232, 180, 200, 0.18);
+    padding-left: 1.5rem;
+  }
+
+  #cycle .cred {
+    border-color: rgba(232, 180, 200, 0.14);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  #cycle .cred:hover {
+    background: rgba(232, 180, 200, 0.05);
+    border-color: var(--rose);
+  }
+  #cycle .cred-num { color: var(--rose); }
+  #cycle .cred-title { color: var(--blush); }
+  #cycle .cred-sub { color: var(--text-mute); }
+
+  #cycle .method {
+    border-color: rgba(232, 180, 200, 0.16);
+    background: linear-gradient(180deg, rgba(232, 180, 200, 0.045), transparent);
+  }
+  #cycle .method-label { color: var(--rose); }
+  #cycle .method-title { color: var(--blush); font-family: var(--f-serif); font-style: italic; }
+  #cycle .method-stats .v { color: var(--rose-glow); }
+  #cycle .method-stats .l { color: var(--text-mute); }
+
+  #cycle .service-features li::before { color: var(--rose); }
+  #cycle .coach-body strong { color: var(--rose-glow); }
+  #cycle em { color: var(--rose-glow); font-style: italic; }
+
+  /* Soft serif accent for the in-practice phase headings */
+  #cycle .coach-body strong {
+    font-family: var(--f-body);
+    font-weight: 600;
+  }
+
+
+  /* ===================== SERVICE CARD PRICE (matches package format) ===================== */
+  .service-price {
+    text-align: right;
+  }
+  .svc-per {
+    font-family: var(--f-display);
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    line-height: 1;
+    color: var(--text);
     letter-spacing: -0.015em;
+    white-space: nowrap;
+    margin-bottom: 0.35rem;
+  }
+  .svc-per .currency {
+    font-size: 0.55em;
+    color: var(--green);
+    margin-right: 0.08em;
+    vertical-align: top;
+    line-height: 1.2;
+  }
+  .svc-per .per-suffix {
+    font-family: var(--f-serif);
+    font-style: italic;
+    color: var(--green);
+    font-size: 0.36em;
+    letter-spacing: 0.04em;
+    margin-left: 0.35em;
+    vertical-align: baseline;
+    white-space: nowrap;
+  }
+  .svc-total {
+    font-family: var(--f-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .svc-total .total-label {
+    color: var(--text-faint);
+    margin-right: 0.4em;
+  }
+  .svc-total .currency {
+    color: var(--green);
+    margin-right: 0.05em;
+  }
+  .svc-total .pkg-strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+  @media (max-width: 900px) {
+    .svc-per { font-size: 1.4rem; }
+    .svc-total { font-size: 0.58rem; letter-spacing: 0.14em; }
   }
 
-  /* Cards: hard-edged frames with thicker borders — the boxed poster look */
-  .service, .pkg-display, .book-card, .crew-portal {
-    border-width: 2px !important;
-    border-radius: 4px !important;
-    border-color: rgba(255, 255, 255, 0.22) !important;
-  }
-  .service { margin-bottom: 0.9rem; }
 
-  /* "Most-popular" style YELLOW pop — applied to the Crew Portal sample CTA
-     (where new visitors should land), echoing the poster's yellow CTA chip. */
-  .crew-portal-sample {
-    background: rgba(255, 209, 45, 0.10) !important;
-    border-left: 3px solid var(--gold) !important;
+  /* ============================================================ */
+  /* ============== OMMO LIGHT-THEME REDESIGN ================== */
+  /* ============================================================ */
+
+  /* New brand palette — based on OMMO poster: white bg, royal blue, red */
+  :root {
+    /* Backgrounds */
+    --bg-deepest: #FFFFFF;
+    --bg-dark: #F4F6FB;
+    --bg-elevated: #FFFFFF;
+    --bg-card: #FFFFFF;
+
+    /* Royal blue (alias to --green so existing CSS picks it up) */
+    --green: #1B2DCC;
+    --green-glow: #2D43E8;
+    --green-deep: #0A1A8C;
+    --green-shadow: rgba(27, 45, 204, 0.25);
+    --green-faint: rgba(27, 45, 204, 0.08);
+
+    /* Red accents (alias to --gold for prestige spots) */
+    --gold: #E5343B;
+    --gold-faint: rgba(229, 52, 59, 0.14);
+
+    /* Text inverted to dark on white */
+    --text: #0A0F36;
+    --text-mute: #4B5563;
+    --text-faint: #9CA3AF;
+
+    /* Borders */
+    --border: rgba(27, 45, 204, 0.18);
+    --border-soft: rgba(10, 15, 54, 0.10);
+
+    /* Explicit OMMO palette tokens */
+    --ommo-blue: #1B2DCC;
+    --ommo-blue-light: #2D43E8;
+    --ommo-red: #E5343B;
+    --ommo-red-deep: #B81E25;
+    --ommo-ink: #0A0F36;
+  }
+
+  /* Remove dark grain overlay (was designed for dark theme) */
+  body::before {
+    opacity: 0 !important;
+    background: none !important;
+  }
+  /* Replace dark ambient gradients with a graph-paper grid pattern */
+  body::after {
+    background:
+      linear-gradient(to right, rgba(10, 15, 54, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10, 15, 54, 0.05) 1px, transparent 1px) !important;
+    background-size: 28px 28px !important;
+    opacity: 1 !important;
+    z-index: 0;
+  }
+  body {
+    background: var(--bg-deepest) !important;
+    color: var(--text) !important;
+  }
+
+  /* Loader: white panel with blue bar */
+  .loader { background: var(--bg-deepest) !important; }
+  .loader-mark .name { color: var(--ommo-ink) !important; }
+  .loader-mark .x { color: var(--ommo-red) !important; }
+  .loader-bar { background: rgba(10, 15, 54, 0.1) !important; }
+  .loader-bar::after { background: var(--ommo-blue) !important; }
+
+  /* Header: white blurred, blue underline */
+  .site-header {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-bottom-color: var(--border) !important;
+  }
+  .site-header.scrolled {
+    background: rgba(255, 255, 255, 0.97) !important;
+  }
+  .brand-lockup .crew { color: var(--ommo-ink) !important; }
+  .brand-lockup .x { color: var(--text-faint) !important; }
+  .brand-lockup .levels {
+    color: var(--ommo-blue) !important;
+    font-style: italic !important;
+  }
+  .brand-lockup .levels::after { display: none !important; }
+  .brand-lockup .ommo-star {
+    color: var(--ommo-red) !important;
+    margin-left: 0.18em;
+    font-style: normal;
+    display: inline-block;
+  }
+  .brand-lockup .ornament { color: var(--ommo-red) !important; }
+
+  /* Book CTA in header */
+  a[href="#book"].cta, .cta {
+    background: var(--ommo-blue) !important;
+    color: #fff !important;
+    border-color: var(--ommo-blue) !important;
+  }
+
+  /* Hero */
+  .hero-kicker, .hero-track { color: var(--ommo-blue) !important; }
+  .hero-title { color: var(--ommo-ink) !important; font-style: italic; letter-spacing: -0.01em; }
+  .hero-title .italic { color: var(--ommo-blue) !important; }
+  .hero-sub { color: var(--text-mute) !important; }
+  .hero-stat .num { color: var(--ommo-ink) !important; }
+  .hero-stat .unit { color: var(--ommo-red) !important; }
+  .hero-stat .lbl { color: var(--text-mute) !important; }
+  .pulse-line { stroke: var(--ommo-red) !important; }
+  .threshold-line { stroke: var(--ommo-blue) !important; }
+  .threshold-label { color: var(--ommo-blue) !important; }
+
+  /* Sections — light surfaces */
+  section { background: transparent !important; position: relative; z-index: 1; }
+  .section-num { color: var(--ommo-blue) !important; }
+  .section-title { color: var(--ommo-ink) !important; font-style: italic !important; letter-spacing: -0.015em; }
+  .section-title .italic { color: var(--ommo-blue) !important; }
+  .section-aside { color: var(--text-mute) !important; }
+
+  /* Coach section */
+  .coach-name { color: var(--ommo-ink) !important; font-style: italic; }
+  .coach-role { color: var(--ommo-blue) !important; }
+  .coach-body { color: var(--text) !important; }
+  .coach-body strong { color: var(--ommo-blue) !important; }
+  .ig-link { color: var(--ommo-blue) !important; border-color: var(--border) !important; }
+  .ig-link:hover { background: var(--green-faint) !important; }
+  .ig-link .handle { color: var(--ommo-ink) !important; }
+  .ig-link .arrow { color: var(--ommo-red) !important; }
+  .cred {
+    background: #fff !important;
+    border-color: var(--border) !important;
+    color: var(--text) !important;
     border-radius: 4px;
-    padding: 1rem 1.1rem !important;
+  }
+  .cred:hover { border-color: var(--ommo-blue) !important; background: var(--green-faint) !important; }
+  .cred-num { color: var(--ommo-red) !important; font-style: italic; font-weight: 700; }
+  .cred-title { color: var(--ommo-ink) !important; font-style: italic; }
+  .cred-sub { color: var(--text-mute) !important; }
+
+  /* Methodology block */
+  .method {
+    background: linear-gradient(180deg, rgba(27, 45, 204, 0.04), transparent) !important;
+    border: 2px solid var(--ommo-ink) !important;
+    border-radius: 4px;
+    padding: 2rem !important;
+  }
+  .method-label { color: var(--ommo-red) !important; font-weight: 700; letter-spacing: 0.2em; }
+  .method-title { color: var(--ommo-ink) !important; font-style: italic; }
+  .method-stats .v { color: var(--ommo-blue) !important; font-style: italic; }
+  .method-stats .l { color: var(--text-mute) !important; }
+
+  /* Anatomy / Race stations */
+  .race-spec-item .v { color: var(--ommo-blue) !important; font-style: italic; }
+  .race-spec-item .l { color: var(--text-mute) !important; }
+  .station {
+    background: #fff !important;
+    border-color: var(--border) !important;
+    color: var(--text) !important;
+    border-radius: 4px;
+  }
+  .station:hover { border-color: var(--ommo-blue) !important; background: var(--green-faint) !important; }
+  .station-num { color: var(--ommo-red) !important; font-style: italic; font-weight: 700; }
+  .station-name { color: var(--ommo-ink) !important; font-style: italic; }
+  .station-dist, .station-spec, .station-equip { color: var(--text-mute) !important; }
+  .station-tip {
+    background: var(--ommo-ink) !important;
+    color: #fff !important;
+    border-color: var(--ommo-blue) !important;
+    border-radius: 4px;
+  }
+  .station-tip-label { color: var(--ommo-red) !important; }
+  .station-tip strong { color: var(--ommo-red) !important; }
+  .run-callout {
+    background: var(--ommo-red) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 4px;
+    padding: 1rem 1.5rem !important;
+  }
+  .run-callout strong { color: #fff !important; }
+
+  /* Services */
+  .service {
+    background: #fff !important;
+    border: 2px solid var(--ommo-ink) !important;
+    border-radius: 4px !important;
+    margin-bottom: 1rem;
+  }
+  .service-head { color: var(--text) !important; }
+  .service-no { color: var(--ommo-red) !important; font-style: italic; font-weight: 700; }
+  .service-title { color: var(--ommo-ink) !important; font-style: italic !important; }
+  .service-title .italic { color: var(--ommo-blue) !important; }
+  .service-price { color: var(--ommo-ink) !important; font-style: italic !important; }
+  .service-price .currency { color: var(--ommo-red) !important; font-weight: 700; }
+  .service-arrow { color: var(--ommo-blue) !important; border-color: var(--border) !important; }
+  .service.open { background: #fff !important; border-color: var(--ommo-blue) !important; }
+  .service.open .service-head { background: rgba(27, 45, 204, 0.04) !important; }
+  .service-desc { color: var(--text) !important; }
+  .service-features li { color: var(--text-mute) !important; }
+  .service-features li::before { color: var(--ommo-blue) !important; }
+  .service-meta { border-color: var(--border) !important; background: var(--bg-dark) !important; border-radius: 4px; }
+  .service-meta-label { color: var(--ommo-red) !important; font-weight: 700; letter-spacing: 0.2em; }
+  .service-meta-content { color: var(--text) !important; }
+  .service-meta-link { color: var(--ommo-blue) !important; font-weight: 600; }
+
+  /* Sim tiers inside Service 01 */
+  .sim-tier {
+    background: var(--bg-dark) !important;
+    border: 1.5px solid var(--ommo-blue) !important;
+    border-radius: 4px;
+  }
+  .sim-tier-head { border-bottom-color: var(--border) !important; }
+  .sim-tier-name { color: var(--ommo-ink) !important; font-style: italic; }
+  .sim-tier-price { color: var(--ommo-red) !important; font-style: italic; font-weight: 700; }
+  .sim-tier p { color: var(--text-mute) !important; }
+
+  /* Service-card price block (svc-per / svc-total) */
+  .svc-per { color: var(--ommo-ink) !important; font-style: italic !important; }
+  .svc-per .currency { color: var(--ommo-red) !important; }
+  .svc-per .per-suffix { color: var(--ommo-blue) !important; font-style: italic; }
+  .svc-total { color: var(--text-mute) !important; }
+  .svc-total .currency { color: var(--ommo-red) !important; }
+  .svc-total .pkg-strong { color: var(--ommo-ink) !important; }
+  .svc-total .total-label { color: var(--text-faint) !important; }
+
+  /* Packages */
+  .pkg-selector { border-color: var(--border) !important; }
+  .pkg-tab { color: var(--text-mute) !important; border-right-color: var(--border) !important; background: #fff !important; }
+  .pkg-tab:hover { color: var(--ommo-blue) !important; }
+  .pkg-tab.active {
+    color: #fff !important;
+    background: var(--ommo-blue) !important;
+    font-style: italic !important;
+  }
+  .pkg-tab.active::after { background: var(--ommo-red) !important; }
+  .pkg-display {
+    background: #fff !important;
+    border: 2px solid var(--ommo-ink) !important;
+    border-radius: 4px !important;
+  }
+  .pkg-name { color: var(--ommo-red) !important; font-weight: 700; letter-spacing: 0.2em; }
+  .pkg-headline { color: var(--ommo-ink) !important; font-style: italic !important; }
+  .pkg-headline .italic { color: var(--ommo-blue) !important; }
+  .pkg-desc { color: var(--text) !important; }
+  .pkg-value-row { color: var(--text) !important; border-bottom: 1px dashed var(--border) !important; }
+  .pkg-value-row .val { color: var(--ommo-ink) !important; font-weight: 500; }
+  .pkg-value-row.total { color: var(--ommo-ink) !important; }
+  .pkg-value-row.total .val { color: var(--ommo-blue) !important; font-style: italic; font-weight: 700; }
+  .pkg-value-row.your-price { color: var(--ommo-ink) !important; }
+  .pkg-value-row.your-price .val { color: var(--ommo-red) !important; font-style: italic; font-weight: 700; }
+  .pkg-bargain-badge {
+    background: var(--ommo-red) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 3px;
+    font-style: italic;
+    font-weight: 700;
+  }
+  .pkg-bargain-badge .currency { color: #fff !important; }
+  .pkg-sessions { color: var(--text-mute) !important; font-style: italic; }
+  .pkg-per { color: var(--ommo-ink) !important; font-style: italic !important; }
+  .pkg-price { color: var(--text-mute) !important; }
+  .pkg-price .currency { color: var(--ommo-red) !important; }
+  .pkg-price #pkgPrice,
+  .pkg-price #runPkgPrice,
+  .pkg-price #scPkgPrice { color: var(--ommo-ink) !important; }
+  .pkg-includes { border-color: var(--border) !important; background: var(--bg-dark) !important; border-radius: 4px; }
+  .pkg-includes .item { color: var(--text-mute) !important; }
+
+  /* Booking section — black contrast panel (like the poster's OPEN GYM TRIAL box) */
+  #book {
+    background: var(--ommo-ink) !important;
+    color: #fff !important;
+    border-top: 4px solid var(--ommo-red) !important;
+    border-bottom: 4px solid var(--ommo-red) !important;
+  }
+  #book .section-num { color: var(--ommo-red) !important; }
+  #book .section-title { color: #fff !important; }
+  #book .section-title .italic { color: var(--ommo-blue-light) !important; }
+  #book .book-card {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+    border-radius: 4px;
+  }
+  #book .book-heading { color: #fff !important; font-style: italic; }
+  #book .book-heading .italic { color: var(--ommo-blue-light) !important; }
+  #book .book-tagline { color: rgba(255, 255, 255, 0.75) !important; }
+  #book .book-location .lbl { color: var(--ommo-red) !important; }
+  #book .book-location .val { color: #fff !important; font-style: italic; }
+  #book .book-location .sub { color: rgba(255, 255, 255, 0.65) !important; }
+  #book .book-ig {
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+  }
+  #book .book-ig:hover { border-color: var(--ommo-blue-light) !important; }
+  #book .book-ig .who { color: var(--ommo-red) !important; }
+  #book .form-field label { color: rgba(255, 255, 255, 0.75) !important; }
+  #book .form-field input,
+  #book .form-field select,
+  #book .form-field textarea {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+  #book .form-field input::placeholder,
+  #book .form-field textarea::placeholder { color: rgba(255, 255, 255, 0.4) !important; }
+  #book .submit-btn {
+    background: var(--ommo-red) !important;
+    color: #fff !important;
+    border: none !important;
+    font-style: italic !important;
+    letter-spacing: 0.15em;
+  }
+  #book .submit-btn:hover { background: var(--ommo-red-deep) !important; }
+
+  /* Crew portal CTA */
+  .crew-portal {
+    background: #fff !important;
+    border: 2px solid var(--ommo-ink) !important;
+    border-radius: 4px;
+    color: var(--ommo-ink) !important;
+  }
+  .crew-portal-label { color: var(--ommo-red) !important; font-weight: 700; }
+  .crew-portal-title { color: var(--ommo-ink) !important; font-style: italic; }
+  .crew-portal-title .italic { color: var(--ommo-blue) !important; }
+  .crew-portal-desc { color: var(--text-mute) !important; }
+  .crew-portal-sample {
+    background: rgba(229, 52, 59, 0.08) !important;
+    border-left: 3px solid var(--ommo-red) !important;
+    color: var(--ommo-ink) !important;
+    border-radius: 3px;
   }
   .crew-portal-sample .sample-tag {
-    background: var(--gold) !important;
-    color: var(--ink) !important;
+    background: var(--ommo-red) !important;
+    color: #fff !important;
     padding: 2px 9px;
     border-radius: 3px;
-    font-weight: 700 !important;
+    font-weight: 700;
     margin-right: 0.6rem;
   }
   .crew-portal-sample code {
-    background: #FFFFFF !important;
-    color: var(--bg-deepest) !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    background: var(--ommo-blue) !important;
+    color: #fff !important;
+    border: none !important;
     font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 2px;
   }
+  .crew-portal-btn {
+    background: var(--ommo-blue) !important;
+    color: #fff !important;
+    border: none !important;
+    font-style: italic !important;
+    letter-spacing: 0.15em;
+  }
+  .crew-portal-btn:hover { background: var(--ommo-blue-light) !important; }
+  .crew-portal-btn .ornament { color: var(--ommo-red) !important; }
 
-  /* Yellow accent on the "30-session FULL" tab — the recommended block.
-     This injects a tiny yellow dot via a pseudo-element so we don't need new markup. */
-  .pkg-tab[data-pkg="full"]::after {
-    content: '';
-    display: inline-block;
-    width: 7px; height: 7px;
-    margin-left: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 6px rgba(255, 209, 45, 0.6);
-    transform: translateY(-1px);
-  }
-
-  /* Booking section gets a near-black contrast panel — like the poster's
-     "OPEN GYM TRIAL" black box that breaks up the blue. */
-  #book {
-    background: linear-gradient(180deg, var(--ink) 0%, #060919 100%);
-    border-top: 2px solid rgba(255, 255, 255, 0.18);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.18);
-    position: relative;
-    z-index: 1;
-  }
-  #book .book-card {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border-color: rgba(255, 255, 255, 0.18) !important;
-  }
-  #book .book-heading { color: #FFFFFF !important; }
-  #book .book-tagline,
-  #book .book-location .lbl,
-  #book .book-location .sub { color: rgba(255, 255, 255, 0.78) !important; }
-  #book .book-location .val { color: var(--gold) !important; font-style: italic; }
-  #book .form-field label { color: rgba(255, 255, 255, 0.70) !important; }
-  #book .submit-btn {
-    background: var(--gold) !important;
-    color: var(--ink) !important;
-    border-color: var(--gold) !important;
-  }
-  #book .submit-btn:hover { color: #FFFFFF !important; }
-  #book .submit-btn::before { background: var(--red) !important; }
-
-  /* Footer also drops onto the black so the rhythm bookends cleanly */
+  /* Footer */
   footer {
-    background: var(--ink);
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    background: #fff !important;
+    border-top: 2px solid var(--ommo-ink) !important;
+    color: var(--text-mute) !important;
+  }
+  .footer-brand { color: var(--ommo-ink) !important; font-style: italic; }
+  .footer-brand .x { color: var(--ommo-red) !important; }
+  .footer-quote { color: var(--text-mute) !important; font-style: italic; }
+  .footer-meta { color: var(--text-faint) !important; }
+
+  /* The OMMO-star helper */
+  .ommo-star {
+    color: var(--ommo-red);
+    font-style: normal;
+    margin-left: 0.18em;
+    display: inline-block;
+  }
+  .footer-brand .ommo-star { color: var(--ommo-red) !important; }
+
+  /* =========================================================
+     CYCLE-CENTRIC TRAINING — coral / pink-red harmony with Ommo
+     ========================================================= */
+  :root {
+    --rose: #E84B72;          /* coral pink-red */
+    --rose-glow: #FF6E91;
+    --rose-deep: #B83254;
+    --blush: #FFE7EE;
+    --rose-faint: rgba(232, 75, 114, 0.10);
+    --rose-shadow: rgba(232, 75, 114, 0.28);
+    --plum: #8B2F4A;
+  }
+  #cycle {
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(232, 75, 114, 0.10), transparent 55%),
+      radial-gradient(ellipse at 85% 80%, rgba(232, 75, 114, 0.06), transparent 55%),
+      linear-gradient(180deg, rgba(255, 231, 238, 0.45), transparent 30%),
+      #fff !important;
+    border-top: 2px solid var(--rose);
+    border-bottom: 2px solid var(--rose);
+  }
+  #cycle::before {
+    content: '❀';
+    color: var(--rose);
+    opacity: 0.5;
+  }
+  #cycle::after {
+    background: linear-gradient(90deg, transparent, var(--rose), transparent) !important;
+    opacity: 0.65;
+  }
+  #cycle .section-num { color: var(--rose-deep) !important; }
+  #cycle .section-title .italic { color: var(--rose) !important; }
+  #cycle .coach-role { color: var(--rose-deep) !important; font-style: italic; font-family: var(--f-serif); }
+  #cycle .coach-bio { border-left: 2px solid var(--rose-faint); padding-left: 1.5rem; }
+  #cycle .cred { background: #fff !important; border-color: rgba(232, 75, 114, 0.18) !important; }
+  #cycle .cred:hover { background: rgba(232, 75, 114, 0.05) !important; border-color: var(--rose) !important; }
+  #cycle .cred-num { color: var(--rose) !important; }
+  #cycle .cred-title { color: var(--rose-deep) !important; }
+  #cycle .cred-sub { color: var(--text-mute) !important; }
+  #cycle .method {
+    border-color: var(--rose-faint) !important;
+    background: linear-gradient(180deg, rgba(232, 75, 114, 0.05), transparent) !important;
+  }
+  #cycle .method-label { color: var(--rose-deep) !important; }
+  #cycle .method-title { color: var(--rose-deep) !important; font-style: italic; font-family: var(--f-serif); }
+  #cycle .method-stats .v { color: var(--rose) !important; font-style: italic; }
+  #cycle .service-features li::before { color: var(--rose) !important; }
+  #cycle .coach-body strong { color: var(--rose-deep) !important; }
+  #cycle em { color: var(--rose) !important; font-style: italic; }
+
+  /* Mobile fine-tune */
+  @media (max-width: 720px) {
+    body::after { background-size: 18px 18px !important; opacity: 0.7 !important; }
   }
 
-  /* Pkg-tab active uses yellow underline for the poster look (still white fill) */
-  .pkg-tab.active { box-shadow: inset 0 -3px 0 var(--gold) !important; }
+  /* End OMMO overrides */
 </style>
 </head>
 <body>
@@ -2030,7 +2346,7 @@
     <div class="loader-mark">
       <span class="name">HYBRID CREW</span>
       <span class="x">×</span>
-      <span class="name" style="color: var(--green)">OMMO<span style="color:var(--red); margin-left:0.25em;">★</span></span>
+      <span class="name" style="color: var(--green)">OMMO<span class="ommo-star" aria-hidden="true">★</span></span>
     </div>
     <div class="loader-bar"></div>
   </div>
@@ -2060,7 +2376,7 @@
   </div>
 
   <div class="hero-kicker">
-    HYROX PERFORMANCE COACHING
+    HYROX PERFORMANCE COACHING — GREENHILLS, SAN JUAN
   </div>
 
   <h1 class="hero-title">
@@ -2349,41 +2665,85 @@
       <h2 class="section-title">Five ways to <span class="italic">train.</span></h2>
     </div>
     <p class="section-aside">
-      Tap any service to expand. Pricing reflects coaching at Ommo Athletica.
+      Tap any service to expand. Pricing reflects coaching at Ommo Athletica, Greenhills.
     </p>
   </div>
 
   <div class="services-list reveal-stagger">
 
-    <!-- Service 1 -->
+    <!-- Service 1: All Hyrox race simulations (Solo / Doubles / Relay) -->
     <div class="service" data-service>
       <div class="service-head">
         <div class="service-no">— 01 —</div>
-        <div class="service-title">Hyrox Full <span class="italic">Simulation</span></div>
-        <div class="service-price"><span class="currency">₱</span>3,900</div>
+        <div class="service-title">Hyrox <span class="italic">Full Simulation</span></div>
+        <div class="service-price">
+          <div class="svc-per">From <span class="currency">&#8369;</span>1,700<span class="per-suffix">/ person</span></div>
+          <div class="svc-total"><span class="total-label">Solo</span><span class="currency">&#8369;</span><span class="pkg-strong">3,900</span> &middot; <span class="total-label">Doubles</span><span class="currency">&#8369;</span><span class="pkg-strong">2,800</span> &middot; <span class="total-label">Relay</span><span class="currency">&#8369;</span><span class="pkg-strong">1,700</span></div>
+        </div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
         <div class="service-inner">
           <div>
             <p class="service-desc">
-              Live coaching through the complete 8.7 km + 8 stations — the closest thing to race day before race day.
-              One day. One athlete. Full debrief.
+              The full 8.7 km + 8 stations, coached live &mdash; race day before race day.
+              Three formats depending on whether you are racing Solo, as a Doubles pair, or as a 4-person Relay team.
             </p>
-            <ul class="service-features">
-              <li>Live run pacing strategy for each segment</li>
-              <li>Nutrition & hydration plan</li>
-              <li>Per-station regulation & technique calls</li>
-              <li>Mental performance coaching mid-race</li>
-              <li>Warm-up & activation protocol</li>
-              <li>Post-simulation analysis & metrics debrief</li>
-              <li>Heart rate, power, pace interpretation</li>
-            </ul>
+
+            <!-- Solo -->
+            <div class="sim-tier">
+              <div class="sim-tier-head">
+                <span class="sim-tier-name">Solo &middot; Open / Pro</span>
+                <span class="sim-tier-price">&#8369;3,900 / person</span>
+              </div>
+              <p>Full race coached one-on-one. Men's / Women's Open or Pro division standards.</p>
+              <ul class="service-features">
+                <li>Live run pacing strategy for each segment</li>
+                <li>Per-station regulation, technique &amp; equipment calls</li>
+                <li>Nutrition &amp; hydration plan</li>
+                <li>Warm-up &amp; activation protocol</li>
+                <li>Mental performance coaching mid-race</li>
+                <li>Post-sim metrics debrief (HR, pace, power)</li>
+              </ul>
+            </div>
+
+            <!-- Doubles -->
+            <div class="sim-tier">
+              <div class="sim-tier-head">
+                <span class="sim-tier-name">Doubles &middot; Team of 2</span>
+                <span class="sim-tier-price">&#8369;2,800 / person</span>
+              </div>
+              <p>Same full race as a team of two. Built for partners prepping a Doubles category at Hyrox Bangkok, Singapore, or Manila.</p>
+              <ul class="service-features">
+                <li>Live exchange strategy on every station (work share + handoffs)</li>
+                <li>Pacing plan calibrated to the slower partner's threshold</li>
+                <li>Nutrition + hydration plan for both athletes</li>
+                <li>Warm-up + activation as a pair</li>
+                <li>Post-sim debrief: combined splits, individual splits, exchanges</li>
+              </ul>
+            </div>
+
+            <!-- Relay -->
+            <div class="sim-tier">
+              <div class="sim-tier-head">
+                <span class="sim-tier-name">Relay &middot; Team of 4</span>
+                <span class="sim-tier-price">&#8369;1,700 / person &middot; &#8369;6,800 total</span>
+              </div>
+              <p>Full simulation as a 4-person relay &mdash; each athlete owning a quarter of the race. Great for crews, team building, or race rehearsal.</p>
+              <ul class="service-features">
+                <li>Relay order optimization based on each athlete's strength profile</li>
+                <li>Per-leg pacing strategy (2 stations + run intervals per leg)</li>
+                <li>Live handoff coaching + transition zone protocol</li>
+                <li>Team warm-up + activation</li>
+                <li>Post-sim debrief: team splits, individual leg splits, handoffs</li>
+              </ul>
+            </div>
           </div>
           <div class="service-meta">
-            <div class="service-meta-label">— DELIVERABLE</div>
+            <div class="service-meta-label">&mdash; DELIVERABLE</div>
             <div class="service-meta-content">
-              Written pacing strategy document + post-sim metrics report + recommended next-block training focus.
+              Every athlete gets a written pacing strategy + post-sim metrics report.
+              Bring your own crew or join a scheduled sim day at Ommo Athletica.
             </div>
           </div>
         </div>
@@ -2395,7 +2755,10 @@
       <div class="service-head">
         <div class="service-no">— 02 —</div>
         <div class="service-title">1-on-1 <span class="italic">Performance Coaching</span></div>
-        <div class="service-price"><span class="currency">₱</span>3,000<span style="font-size:0.55em; color:var(--text-faint); margin-left:0.4em;">/ session</span></div>
+        <div class="service-price">
+          <div class="svc-per">From <span class="currency">&#8369;</span>2,800<span class="per-suffix">/ session</span></div>
+          <div class="svc-total"><span class="total-label">From</span><span class="currency">&#8369;</span><span class="pkg-strong">11,200</span> &middot; 4-session block</div>
+        </div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2417,10 +2780,11 @@
           <div class="service-meta">
             <div class="service-meta-label">— SEE PACKAGES BELOW</div>
             <div class="service-meta-content">
-              Single sessions are the entry point. Most athletes find their stride on the 10- or 20-session blocks.
+              Available exclusively as a block: 4, 10, 20, or 30 sessions.
+              Most athletes find their stride on the 10- or 20-session blocks.
               Serious race prep lives in the 30-session program.
               <br/><br/>
-              <a href="#packages" class="service-meta-link">View packages &amp; pricing</a>
+              <a href="#packages" class="service-meta-link">View Hyrox packages &amp; pricing</a>
             </div>
           </div>
         </div>
@@ -2432,7 +2796,10 @@
       <div class="service-head">
         <div class="service-no">— 03 —</div>
         <div class="service-title">Running <span class="italic">Coaching</span></div>
-        <div class="service-price"><span class="currency">₱</span>2,500<span style="font-size:0.55em; color:var(--text-faint); margin-left:0.4em;">/ session</span></div>
+        <div class="service-price">
+          <div class="svc-per">From <span class="currency">&#8369;</span>2,300<span class="per-suffix">/ session</span></div>
+          <div class="svc-total"><span class="total-label">From</span><span class="currency">&#8369;</span><span class="pkg-strong">9,200</span> &middot; 4-session block</div>
+        </div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2452,9 +2819,12 @@
             </ul>
           </div>
           <div class="service-meta">
-            <div class="service-meta-label">— BEST FOR</div>
+            <div class="service-meta-label">— SEE RUN PACKAGES BELOW</div>
             <div class="service-meta-content">
-              Athletes chasing a sub-2 half, first marathon, or trying to fix a Hyrox run that falls apart after station 4.
+              Best for athletes chasing a sub-2 half, first marathon, or trying to fix a Hyrox run that falls apart after station 4.
+              Available exclusively as a block: 4, 10, 20, or 30 sessions.
+              <br/><br/>
+              <a href="#run-packages" class="service-meta-link">View run packages &amp; pricing</a>
             </div>
           </div>
         </div>
@@ -2466,7 +2836,10 @@
       <div class="service-head">
         <div class="service-no">— 04 —</div>
         <div class="service-title">Hybrid <span class="italic">Strength & Conditioning</span></div>
-        <div class="service-price"><span class="currency">₱</span>3,000<span style="font-size:0.55em; color:var(--text-faint); margin-left:0.4em;">/ session</span></div>
+        <div class="service-price">
+          <div class="svc-per">From <span class="currency">&#8369;</span>2,800<span class="per-suffix">/ session</span></div>
+          <div class="svc-total"><span class="total-label">From</span><span class="currency">&#8369;</span><span class="pkg-strong">11,200</span> &middot; 4-session block</div>
+        </div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2488,10 +2861,13 @@
             </ul>
           </div>
           <div class="service-meta">
-            <div class="service-meta-label">— STRUCTURE</div>
+            <div class="service-meta-label">— SEE S&amp;C PACKAGES BELOW</div>
             <div class="service-meta-content">
-              Mesocycles run 6–12 weeks with primary, secondary, and tertiary goals shifting by season.
+              Mesocycles run 6&ndash;12 weeks with primary, secondary, and tertiary goals shifting by season.
               Built to ramp into Hyrox season and peak for major races.
+              Available exclusively as a block: 4, 10, 20, or 30 sessions.
+              <br/><br/>
+              <a href="#sc-packages" class="service-meta-link">View S&amp;C packages &amp; pricing</a>
             </div>
           </div>
         </div>
@@ -2503,7 +2879,10 @@
       <div class="service-head">
         <div class="service-no">— 05 —</div>
         <div class="service-title">Lactate <span class="italic">Threshold Testing</span></div>
-        <div class="service-price"><span class="currency">₱</span>4,500</div>
+        <div class="service-price">
+          <div class="svc-per"><span class="currency">&#8369;</span>4,500<span class="per-suffix">/ person</span></div>
+          <div class="svc-total"><span class="total-label">One-off test</span> &middot; re-test every 8&ndash;12 wks</div>
+        </div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2534,22 +2913,21 @@
   </div>
 </section>
 
-<!-- PACKAGES -->
+<!-- PACKAGES (HYROX 1-ON-1) -->
 <section class="section-pad packages" id="packages">
   <div class="section-head reveal">
     <div>
-      <div class="section-num">04 — PACKAGES</div>
+      <div class="section-num">04 — HYROX PACKAGES</div>
       <h2 class="section-title">Choose your <span class="italic">commitment.</span></h2>
     </div>
     <p class="section-aside">
-      Every block bundles programming, sims, and add-ons that would cost more à la carte.
+      For 1-on-1 Hyrox Performance Coaching. Every block bundles programming, sims, and add-ons that would cost more à la carte.
       Compare the total value against your price.
     </p>
   </div>
 
   <div class="pkg-selector reveal">
-    <button class="pkg-tab active" data-pkg="single">Single Session</button>
-    <button class="pkg-tab" data-pkg="starter">4 · Starter</button>
+    <button class="pkg-tab active" data-pkg="starter">4 · Starter</button>
     <button class="pkg-tab" data-pkg="foundation">10 · Foundation</button>
     <button class="pkg-tab" data-pkg="engine">20 · Engine</button>
     <button class="pkg-tab" data-pkg="full">30 · Full</button>
@@ -2557,27 +2935,27 @@
 
   <div class="pkg-display reveal">
     <div class="pkg-content" id="pkgContent">
-      <div class="pkg-name" id="pkgName">— SINGLE SESSION</div>
-      <div class="pkg-headline" id="pkgHeadline">Try the<br/><span class="italic">methodology.</span></div>
+      <div class="pkg-name" id="pkgName">&mdash; 4-SESSION STARTER</div>
+      <div class="pkg-headline" id="pkgHeadline">For the<br/><span class="italic">beginner.</span></div>
       <div class="pkg-desc" id="pkgDesc">
-        For first-time athletes who want to test the coaching fit before committing to a block.
-        One session, full attention, no commitment.
+        Designed for first-time athletes. Learn the fundamentals &mdash; pacing, breathing, station technique &mdash;
+        without committing to a long block. Programming included.
       </div>
 
-      <div class="pkg-value-stack" id="pkgValueStack" style="display:none;">
-        <div class="pkg-value-row" id="pkgValueLine1"><span>Sessions value</span><span class="val">—</span></div>
-        <div class="pkg-value-row" id="pkgValueLine2" style="display:none;"><span>Included extras</span><span class="val">—</span></div>
-        <div class="pkg-value-row" id="pkgValueLine3" style="display:none;"><span>Included extras</span><span class="val">—</span></div>
-        <div class="pkg-value-row total"><span>Total value</span><span class="val" id="pkgValueTotal">—</span></div>
-        <div class="pkg-value-row your-price"><span>Your price</span><span class="val" id="pkgValuePrice">—</span></div>
-        <div class="pkg-bargain-badge" id="pkgBargain">Save <span class="currency">₱</span><span id="pkgBargainAmount">0</span></div>
+      <div class="pkg-value-stack" id="pkgValueStack" style="display:block;">
+        <div class="pkg-value-row" id="pkgValueLine1" style="display:flex;"><span>4 sessions at base rate</span><span class="val">&#8369;12,000</span></div>
+        <div class="pkg-value-row" id="pkgValueLine2" style="display:flex;"><span>Personalized 2-week program</span><span class="val">&#8369;2,000</span></div>
+        <div class="pkg-value-row" id="pkgValueLine3" style="display:flex;"><span>Onboarding assessment</span><span class="val">&#8369;1,500</span></div>
+        <div class="pkg-value-row total"><span>Total value</span><span class="val" id="pkgValueTotal">&#8369;15,500</span></div>
+        <div class="pkg-value-row your-price"><span>Your price</span><span class="val" id="pkgValuePrice">&#8369;11,200</span></div>
+        <div class="pkg-bargain-badge" id="pkgBargain">Save <span class="currency">&#8369;</span><span id="pkgBargainAmount">4,300</span></div>
       </div>
     </div>
     <div class="pkg-price-side pkg-content" id="pkgPriceSide">
-      <div class="pkg-sessions" id="pkgSessions">1 SESSION</div>
-      <div class="pkg-price"><span class="currency">₱</span><span id="pkgPrice">3,000</span></div>
-      <div class="pkg-per" id="pkgPer">₱3,000 / session</div>
-      <div class="pkg-savings" id="pkgSavings" style="visibility:hidden">— BASE RATE</div>
+      <div class="pkg-sessions" id="pkgSessions">4 SESSIONS &middot; ~2 WEEKS</div>
+      <div class="pkg-per" id="pkgPer">&#8369;2,800<span class="per-suffix">/ session</span></div>
+      <div class="pkg-price"><span class="total-label">Total</span><span class="currency">&#8369;</span><span id="pkgPrice">11,200</span></div>
+      <div class="pkg-savings" id="pkgSavings" style="visibility:hidden">&mdash;</div>
     </div>
     <div class="pkg-includes">
       <span class="item">In-person at Ommo Athletica</span>
@@ -2588,11 +2966,263 @@
   </div>
 </section>
 
+<!-- RUNNING PACKAGES -->
+<section class="section-pad packages" id="run-packages">
+  <div class="section-head reveal">
+    <div>
+      <div class="section-num">04B — RUNNING PACKAGES</div>
+      <h2 class="section-title">Run with <span class="italic">structure.</span></h2>
+    </div>
+    <p class="section-aside">
+      For Running Coaching — half-marathon, marathon, trail, or fixing the Hyrox run.
+      Same polarized 80/20 logic. Pace anchored to actual lactate thresholds, not generic Garmin zones.
+    </p>
+  </div>
+
+  <div class="pkg-selector reveal">
+    <button class="pkg-tab active" data-runpkg="starter">4 · Run Starter</button>
+    <button class="pkg-tab" data-runpkg="foundation">10 · Run Foundation</button>
+    <button class="pkg-tab" data-runpkg="engine">20 · Run Engine</button>
+    <button class="pkg-tab" data-runpkg="full">30 · Run Full</button>
+  </div>
+
+  <div class="pkg-display reveal">
+    <div class="pkg-content" id="runPkgContent">
+      <div class="pkg-name" id="runPkgName">&mdash; 4-SESSION RUN STARTER</div>
+      <div class="pkg-headline" id="runPkgHeadline">Start with<br/><span class="italic">structure.</span></div>
+      <div class="pkg-desc" id="runPkgDesc">
+        For new runners or returning athletes. Gait audit, cadence work, polarized 80/20 weekly plan, and a 2-week structured block of run sessions.
+      </div>
+
+      <div class="pkg-value-stack" id="runPkgValueStack" style="display:block;">
+        <div class="pkg-value-row" id="runPkgValueLine1" style="display:flex;"><span>4 sessions at base rate</span><span class="val">&#8369;10,000</span></div>
+        <div class="pkg-value-row" id="runPkgValueLine2" style="display:flex;"><span>Gait + cadence video analysis</span><span class="val">&#8369;2,000</span></div>
+        <div class="pkg-value-row" id="runPkgValueLine3" style="display:flex;"><span>Personalized 2-week run plan</span><span class="val">&#8369;1,500</span></div>
+        <div class="pkg-value-row total"><span>Total value</span><span class="val" id="runPkgValueTotal">&#8369;13,500</span></div>
+        <div class="pkg-value-row your-price"><span>Your price</span><span class="val" id="runPkgValuePrice">&#8369;9,200</span></div>
+        <div class="pkg-bargain-badge" id="runPkgBargain">Save <span class="currency">&#8369;</span><span id="runPkgBargainAmount">4,300</span></div>
+      </div>
+    </div>
+    <div class="pkg-price-side pkg-content" id="runPkgPriceSide">
+      <div class="pkg-sessions" id="runPkgSessions">4 SESSIONS &middot; ~2 WEEKS</div>
+      <div class="pkg-per" id="runPkgPer">&#8369;2,300<span class="per-suffix">/ session</span></div>
+      <div class="pkg-price"><span class="total-label">Total</span><span class="currency">&#8369;</span><span id="runPkgPrice">9,200</span></div>
+      <div class="pkg-savings" id="runPkgSavings" style="visibility:hidden">&mdash;</div>
+    </div>
+    <div class="pkg-includes">
+      <span class="item">In-person or remote run sessions</span>
+      <span class="item">Written periodized plan</span>
+      <span class="item">Garmin / Whoop / Stryd review</span>
+      <span class="item">Race-week taper protocol</span>
+    </div>
+  </div>
+</section>
+
+<!-- HYBRID S&C PACKAGES -->
+<section class="section-pad packages" id="sc-packages">
+  <div class="section-head reveal">
+    <div>
+      <div class="section-num">04C &mdash; S&amp;C PACKAGES</div>
+      <h2 class="section-title">Build the <span class="italic">engine.</span></h2>
+    </div>
+    <p class="section-aside">
+      For Hybrid Strength &amp; Conditioning. Periodized blocks so strength and endurance develop together,
+      with neither stealing from the other. Anchored to a 6&ndash;12 week mesocycle plan.
+    </p>
+  </div>
+
+  <div class="pkg-selector reveal">
+    <button class="pkg-tab active" data-scpkg="starter">4 &middot; S&amp;C Starter</button>
+    <button class="pkg-tab" data-scpkg="foundation">10 &middot; S&amp;C Foundation</button>
+    <button class="pkg-tab" data-scpkg="engine">20 &middot; S&amp;C Engine</button>
+    <button class="pkg-tab" data-scpkg="full">30 &middot; S&amp;C Full</button>
+  </div>
+
+  <div class="pkg-display reveal">
+    <div class="pkg-content" id="scPkgContent">
+      <div class="pkg-name" id="scPkgName">&mdash; 4-SESSION S&amp;C STARTER</div>
+      <div class="pkg-headline" id="scPkgHeadline">Start with the<br/><span class="italic">movement.</span></div>
+      <div class="pkg-desc" id="scPkgDesc">
+        Movement screen, primary-lift technique work, and a 2-week S&amp;C block. For athletes new to structured strength training, or returning after a layoff.
+      </div>
+
+      <div class="pkg-value-stack" id="scPkgValueStack" style="display:block;">
+        <div class="pkg-value-row" id="scPkgValueLine1" style="display:flex;"><span>4 sessions at base rate</span><span class="val">&#8369;12,000</span></div>
+        <div class="pkg-value-row" id="scPkgValueLine2" style="display:flex;"><span>Movement screen + lift technique audit</span><span class="val">&#8369;2,000</span></div>
+        <div class="pkg-value-row" id="scPkgValueLine3" style="display:flex;"><span>Personalized 2-week program</span><span class="val">&#8369;1,500</span></div>
+        <div class="pkg-value-row total"><span>Total value</span><span class="val" id="scPkgValueTotal">&#8369;15,500</span></div>
+        <div class="pkg-value-row your-price"><span>Your price</span><span class="val" id="scPkgValuePrice">&#8369;11,200</span></div>
+        <div class="pkg-bargain-badge" id="scPkgBargain">Save <span class="currency">&#8369;</span><span id="scPkgBargainAmount">4,300</span></div>
+      </div>
+    </div>
+    <div class="pkg-price-side pkg-content" id="scPkgPriceSide">
+      <div class="pkg-sessions" id="scPkgSessions">4 SESSIONS &middot; ~2 WEEKS</div>
+      <div class="pkg-per" id="scPkgPer">&#8369;2,800<span class="per-suffix">/ session</span></div>
+      <div class="pkg-price"><span class="total-label">Total</span><span class="currency">&#8369;</span><span id="scPkgPrice">11,200</span></div>
+      <div class="pkg-savings" id="scPkgSavings" style="visibility:hidden">&mdash;</div>
+    </div>
+    <div class="pkg-includes">
+      <span class="item">In-person at Ommo Athletica</span>
+      <span class="item">Periodized written program</span>
+      <span class="item">Bar-speed + RPE auto-regulation</span>
+      <span class="item">Hyrox / DEKA race-day taper</span>
+    </div>
+  </div>
+</section>
+
+<!-- CYCLE-CENTRIC TRAINING (FEMALE ATHLETES) -->
+<section class="section-pad coach" id="cycle">
+  <div class="section-head reveal">
+    <div>
+      <div class="section-num">05 — CYCLE-CENTRIC TRAINING</div>
+      <h2 class="section-title">Train with your <span class="italic">physiology</span> — not against it.</h2>
+    </div>
+    <p class="section-aside">
+      For female athletes who want their training synced to their menstrual cycle.
+      Programming written around your hormonal phases, with intensity and volume calibrated to where you actually are
+      that week — not a generic 7-day repeat.
+    </p>
+  </div>
+
+  <div class="coach-grid">
+    <div class="coach-bio reveal">
+      <div class="coach-role" style="margin-bottom:1rem;">Why cycle-syncing matters</div>
+      <p class="coach-body">
+        The menstrual cycle is a hormonal environment shift every athlete with one moves through every month —
+        and it changes how the body responds to training. Estrogen and progesterone modulate
+        <strong>substrate utilization, core temperature, recovery rate, ligamentous laxity, and central drive.</strong>
+        Ignoring this is not equality — it is a missed signal.
+      </p>
+      <p class="coach-body">
+        We do not program around stereotypes. We program around <strong>your</strong> cycle, tracked over 2–3 months,
+        cross-referenced with your HRV, RHR, sleep, and session RPE.
+        The goal: protect adaptation when your body is primed for it, and stop trying to PR in a week your physiology is already taxed.
+      </p>
+      <p class="coach-body">
+        <strong>Built on the same data-led foundation as the rest of the methodology</strong> — Seiler's polarized 80/20,
+        San Millan's lactate-anchored zones, and Weersma's hybrid programming principles.
+        Cycle-syncing is the resolution layer, not a replacement for the framework.
+      </p>
+    </div>
+
+    <div class="credentials reveal-stagger">
+      <div class="cred">
+        <div class="cred-num">01</div>
+        <div class="cred-title">Menstrual</div>
+        <div class="cred-sub">Days 1–5 · Hormones low</div>
+      </div>
+      <div class="cred">
+        <div class="cred-num">02</div>
+        <div class="cred-title">Follicular</div>
+        <div class="cred-sub">Days 6–13 · Estrogen rising</div>
+      </div>
+      <div class="cred">
+        <div class="cred-num">03</div>
+        <div class="cred-title">Ovulatory</div>
+        <div class="cred-sub">Days 14–16 · Estrogen peak</div>
+      </div>
+      <div class="cred">
+        <div class="cred-num">04</div>
+        <div class="cred-title">Early Luteal</div>
+        <div class="cred-sub">Days 17–22 · Progesterone rising</div>
+      </div>
+      <div class="cred">
+        <div class="cred-num">05</div>
+        <div class="cred-title">Late Luteal</div>
+        <div class="cred-sub">Days 23–28 · PMS window</div>
+      </div>
+      <div class="cred">
+        <div class="cred-num">06</div>
+        <div class="cred-title">N = 1</div>
+        <div class="cred-sub">Your data &gt; generic chart</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="method reveal">
+    <div class="method-label">— PROGRAMMING BY PHASE</div>
+    <div class="method-title">
+      Every phase has a physiological signature. Programming respects it — heavy lifting and threshold work concentrated
+      where the hormonal environment is primed for adaptation, Zone 2 and technique work emphasized when fatigue tolerance is lower.
+    </div>
+    <div class="method-stats">
+      <div class="ms-item">
+        <div class="v">HIGH</div>
+        <div class="l">Follicular: PR attempts, threshold, VO₂ max</div>
+      </div>
+      <div class="ms-item">
+        <div class="v">PEAK</div>
+        <div class="l">Ovulatory: race sims, top-end intensity</div>
+      </div>
+      <div class="ms-item">
+        <div class="v">Z2</div>
+        <div class="l">Luteal: aerobic base, fat oxidation, technique</div>
+      </div>
+      <div class="ms-item">
+        <div class="v">DELOAD</div>
+        <div class="l">Late luteal / menstrual: optional offload week</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="coach-grid" style="margin-top:3rem;">
+    <div class="coach-bio reveal">
+      <div class="coach-role" style="margin-bottom:1rem;">What this looks like in practice</div>
+      <p class="coach-body">
+        <strong>Follicular phase (days 6–13):</strong> Rising estrogen improves insulin sensitivity, recovery, and pain tolerance.
+        This is when we schedule the heaviest strength loads, threshold intervals, and lactate-anchored VO₂ work.
+        Bodies respond better to high-CHO fueling here — performance nutrition is timed to match.
+      </p>
+      <p class="coach-body">
+        <strong>Ovulatory window (days 14–16):</strong> Peak estrogen often produces peak power output and a small drop in perceived effort.
+        Race simulations, time trials, and 1RM attempts ideally land here. Caveat: relaxin elevates,
+        so we are sharp on landing mechanics and lifting technique to protect joints.
+      </p>
+      <p class="coach-body">
+        <strong>Early luteal phase (days 17–22):</strong> Progesterone rises, core temperature lifts ~0.3–0.5°C, RPE climbs at the same workload.
+        Volume holds; intensity is rationalized. Zone 2 dominance, more fat-oxidation work, longer warm-ups,
+        electrolyte priority. Heat tolerance drops — outdoor Z2 runs are scheduled cooler.
+      </p>
+      <p class="coach-body">
+        <strong>Late luteal phase (days 23–28):</strong> If PMS symptoms hit, programming flexes — we will trade a hard threshold session
+        for technical skill work or a longer mobility block. Strength sessions stay, but loads are auto-regulated against bar speed
+        and RPE rather than fixed percentages.
+      </p>
+      <p class="coach-body">
+        <strong>Menstrual phase (days 1–5):</strong> Hormone levels drop, and many athletes actually feel better than expected by day 3.
+        We monitor energy and iron status. Training is not reflexively reduced — it is calibrated to how you feel
+        and what your HRV / RHR data shows that morning.
+      </p>
+    </div>
+
+    <div class="coach-bio reveal">
+      <div class="coach-role" style="margin-bottom:1rem;">What we track</div>
+      <ul class="service-features">
+        <li>Cycle length and phase entry (period-tracker app or basal body temp)</li>
+        <li>Morning HRV + resting heart rate (Whoop / Garmin / Oura)</li>
+        <li>Session RPE and bar-speed (where applicable)</li>
+        <li>Sleep duration + sleep quality scores</li>
+        <li>Symptom log: cramps, bloating, mood, energy</li>
+        <li>Iron / ferritin status (annual, more if running high mileage)</li>
+        <li>Heat tolerance + hydration / electrolyte response</li>
+      </ul>
+      <p class="coach-body" style="margin-top:1.5rem;">
+        <strong>Important caveats.</strong> Cycle-syncing applies to athletes with a natural menstrual cycle.
+        If you are on hormonal contraception (combined pill, hormonal IUD, implant), the hormonal environment is constant —
+        we anchor programming to HRV, sleep, and training load instead.
+        If you have PCOS, endometriosis, are perimenopausal, or have an irregular cycle, the framework still applies —
+        we just use your <em>actual</em> cycle data rather than a textbook 28-day model.
+        And nothing here replaces medical advice from your physician or OB-GYN.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- BOOKING -->
 <section class="section-pad book" id="book">
   <div class="section-head reveal">
     <div>
-      <div class="section-num">05 — BOOK</div>
+      <div class="section-num">06 — BOOK</div>
       <h2 class="section-title">Show up. <span class="italic">Start the work.</span></h2>
     </div>
   </div>
@@ -2607,7 +3237,7 @@
       <div class="book-location">
         <span class="lbl">— LOCATION</span>
         <span class="val">Ommo Athletica</span>
-        <span class="sub">Metro Manila · Philippines</span>
+        <span class="sub">Greenhills, San Juan · Metro Manila</span>
       </div>
       <div class="book-location">
         <span class="lbl">— DIRECT</span>
@@ -2649,16 +3279,24 @@
       <div class="form-field">
         <label>What you're interested in</label>
         <select name="interest">
-          <option>Hyrox Full Simulation</option>
-          <option>1-on-1 Coaching — Single Session</option>
-          <option>4-Session Starter (Beginner)</option>
-          <option>10-Session Foundation</option>
-          <option>20-Session Engine</option>
-          <option>30-Session Full (Race Prep)</option>
-          <option>Running Coaching</option>
-          <option>Hybrid S&C</option>
+          <option>Hyrox Full Simulation &mdash; Solo (Open / Pro)</option>
+          <option>Hyrox Full Simulation &mdash; Doubles (team of 2)</option>
+          <option>Hyrox Full Simulation &mdash; Relay (team of 4)</option>
+          <option>4-Session Starter (1-on-1 Hyrox)</option>
+          <option>10-Session Foundation (1-on-1 Hyrox)</option>
+          <option>20-Session Engine (1-on-1 Hyrox)</option>
+          <option>30-Session Full (1-on-1 Hyrox)</option>
+          <option>4-Session Run Starter</option>
+          <option>10-Session Run Foundation</option>
+          <option>20-Session Run Engine</option>
+          <option>30-Session Run Full</option>
+          <option>4-Session S&amp;C Starter</option>
+          <option>10-Session S&amp;C Foundation</option>
+          <option>20-Session S&amp;C Engine</option>
+          <option>30-Session S&amp;C Full</option>
+          <option>Cycle-Centric Training (Female Athletes)</option>
           <option>Lactate Threshold Test</option>
-          <option>Not sure — let's talk</option>
+          <option>Not sure &mdash; let's talk</option>
         </select>
       </div>
       <div class="form-field">
@@ -2689,10 +3327,10 @@
 
 <footer>
   <div class="footer-brand">
-    ✦ HYBRID CREW <span class="x">×</span> OMMO<span style="color:var(--red); margin-left:0.25em;">★</span> ✦
+    ✦ HYBRID CREW <span class="x">×</span> OMMO<span class="ommo-star" aria-hidden="true">★</span> ✦
   </div>
   <div class="footer-quote">A door for the driven. The work holds the key.</div>
-  <div class="footer-meta">PERFORMANCE COACHING</div>
+  <div class="footer-meta">PERFORMANCE COACHING · GREENHILLS, SAN JUAN</div>
 </footer>
 
 <script>
@@ -2777,95 +3415,165 @@
     });
   });
 
-  // ============= PACKAGE SELECTOR =============
-  const SINGLE_RATE = 1500;
+  // ============= PACKAGE SELECTOR (HYROX) =============
+  const SINGLE_RATE = 3000;
   const packages = {
-    single: {
-      name: '— SINGLE SESSION',
-      headline: 'Try the<br/><span class="italic">methodology.</span>',
-      desc: 'For first-time athletes who want to test the coaching fit before committing to a block. One session, full attention, no commitment.',
-      sessions: '1 SESSION',
-      price: '3,000',
-      per: '₱3,000 / session',
-      savings: '— BASE RATE',
-      showSavings: false,
-      showValue: false,
-    },
     starter: {
       name: '— 4-SESSION STARTER',
       headline: 'For the<br/><span class="italic">beginner.</span>',
       desc: 'Designed for first-time athletes. Learn the fundamentals — pacing, breathing, station technique — without committing to a long block. Programming included.',
       sessions: '4 SESSIONS · ~2 WEEKS',
-      price: '12,500',
-      per: '₱3,125 / session',
+      price: '11,200',
+      per: '₱2,800 / session',
       savings: '',
       showSavings: false,
       showValue: true,
       valueLines: [
         { label: '4 sessions at base rate', value: '₱12,000' },
-        { label: 'Personalized 2-week program', value: '₱3,000' },
-        { label: 'Onboarding assessment', value: '₱2,000' },
+        { label: 'Personalized 2-week program', value: '₱2,000' },
+        { label: 'Onboarding assessment', value: '₱1,500' },
       ],
-      totalValue: '₱17,000',
-      yourPrice: '₱12,500',
-      bargain: '4,500',
+      totalValue: '₱15,500',
+      yourPrice: '₱11,200',
+      bargain: '4,300',
     },
     foundation: {
       name: '— 10-SESSION FOUNDATION',
       headline: 'Build the<br/><span class="italic">foundation.</span>',
       desc: 'A focused block to install the basics — pacing, station technique, threshold zones. Opens and closes with a 60% Hyrox simulation (counted in sessions) to benchmark progress.',
       sessions: '10 SESSIONS · ~5 WEEKS',
-      price: '27,500',
-      per: '₱2,750 / session',
+      price: '25,000',
+      per: '₱2,500 / session',
       savings: '',
       showSavings: false,
       showValue: true,
       valueLines: [
         { label: '10 sessions at base rate', value: '₱30,000' },
-        { label: 'Personalized 5-week program', value: '₱5,000' },
+        { label: 'Personalized 5-week program', value: '₱3,500' },
         { label: 'Opening + closing 60% sims', value: 'INCLUDED' },
       ],
-      totalValue: '₱35,000',
-      yourPrice: '₱27,500',
-      bargain: '7,500',
+      totalValue: '₱33,500',
+      yourPrice: '₱25,000',
+      bargain: '8,500',
     },
     engine: {
       name: '— 20-SESSION ENGINE',
       headline: 'Lock in the<br/><span class="italic">engine.</span>',
       desc: 'The block where most athletes break through. Two full cycles, mid-block recovery audit, lactate threshold test included to anchor every zone to your actual physiology.',
       sessions: '20 SESSIONS · ~10 WEEKS',
-      price: '50,000',
-      per: '₱2,500 / session',
+      price: '46,000',
+      per: '₱2,300 / session',
       savings: '',
       showSavings: false,
       showValue: true,
       valueLines: [
         { label: '20 sessions at base rate', value: '₱60,000' },
         { label: 'Lactate threshold test', value: '₱4,500' },
-        { label: 'Programming + 3 sims included', value: '₱10,000' },
+        { label: 'Programming + 3 sims included', value: '₱8,000' },
       ],
-      totalValue: '₱74,500',
-      yourPrice: '₱50,000',
-      bargain: '24,500',
+      totalValue: '₱72,500',
+      yourPrice: '₱46,000',
+      bargain: '26,500',
     },
     full: {
       name: '— 30-SESSION FULL',
       headline: 'Crowned at the<br/><span class="italic">start line.</span>',
       desc: 'Full periodized race prep — built around your specific race date. Includes the Hyrox Full Simulation Day, lactate test, race-week taper, and post-race debrief. The most complete program offered.',
       sessions: '30 SESSIONS · 12 WEEKS',
-      price: '70,500',
-      per: '₱2,350 / session',
+      price: '63,000',
+      per: '₱2,100 / session',
       savings: '',
       showSavings: false,
       showValue: true,
       valueLines: [
         { label: '30 sessions at base rate', value: '₱90,000' },
         { label: 'Hyrox Full Simulation Day', value: '₱3,900' },
-        { label: 'Lactate test + taper + debrief', value: '₱12,000' },
+        { label: 'Lactate test + taper + debrief', value: '₱14,000' },
       ],
-      totalValue: '₱105,900',
-      yourPrice: '₱70,500',
-      bargain: '35,400',
+      totalValue: '₱107,900',
+      yourPrice: '₱63,000',
+      bargain: '44,900',
+    },
+  };
+
+  // ============= PACKAGE SELECTOR (RUNNING) =============
+  const RUN_SINGLE_RATE = 2500;
+  const runPackages = {
+    starter: {
+      name: '— 4-SESSION RUN STARTER',
+      headline: 'Start with<br/><span class="italic">structure.</span>',
+      desc: 'For new runners or returning athletes. Gait audit, cadence work, polarized 80/20 weekly plan, and a 2-week structured block of run sessions.',
+      sessions: '4 SESSIONS · ~2 WEEKS',
+      price: '9,200',
+      per: '₱2,300 / session',
+      savings: '',
+      showSavings: false,
+      showValue: true,
+      valueLines: [
+        { label: '4 sessions at base rate', value: '₱10,000' },
+        { label: 'Gait + cadence video analysis', value: '₱2,000' },
+        { label: 'Personalized 2-week run plan', value: '₱1,500' },
+      ],
+      totalValue: '₱13,500',
+      yourPrice: '₱9,200',
+      bargain: '4,300',
+    },
+    foundation: {
+      name: '— 10-SESSION RUN FOUNDATION',
+      headline: 'Build the<br/><span class="italic">aerobic base.</span>',
+      desc: 'A 5-week block that installs the aerobic engine — Zone 2 dominance, threshold calibration, and a benchmark time trial at open and close of the block.',
+      sessions: '10 SESSIONS · ~5 WEEKS',
+      price: '22,000',
+      per: '₱2,200 / session',
+      savings: '',
+      showSavings: false,
+      showValue: true,
+      valueLines: [
+        { label: '10 sessions at base rate', value: '₱25,000' },
+        { label: 'Personalized 5-week run plan', value: '₱3,000' },
+        { label: 'Opening + closing time trials', value: 'INCLUDED' },
+      ],
+      totalValue: '₱28,000',
+      yourPrice: '₱22,000',
+      bargain: '6,000',
+    },
+    engine: {
+      name: '— 20-SESSION RUN ENGINE',
+      headline: 'Lock in the<br/><span class="italic">run engine.</span>',
+      desc: 'The breakthrough block. Lactate threshold test included, two mesocycles with mid-block recovery audit, and threshold + VO₂ work introduced precisely — never guessed.',
+      sessions: '20 SESSIONS · ~10 WEEKS',
+      price: '42,000',
+      per: '₱2,100 / session',
+      savings: '',
+      showSavings: false,
+      showValue: true,
+      valueLines: [
+        { label: '20 sessions at base rate', value: '₱50,000' },
+        { label: 'Lactate threshold test', value: '₱4,500' },
+        { label: 'Programming + 2 race tune-ups', value: '₱5,000' },
+      ],
+      totalValue: '₱59,500',
+      yourPrice: '₱42,000',
+      bargain: '17,500',
+    },
+    full: {
+      name: '— 30-SESSION RUN FULL',
+      headline: 'Crowned at the<br/><span class="italic">finish line.</span>',
+      desc: 'Full periodized race prep for half-marathon, marathon, or trail goal race — built around your race date. Lactate test, race-week taper, pacing plan, and post-race debrief.',
+      sessions: '30 SESSIONS · 12 WEEKS',
+      price: '57,000',
+      per: '₱1,900 / session',
+      savings: '',
+      showSavings: false,
+      showValue: true,
+      valueLines: [
+        { label: '30 sessions at base rate', value: '₱75,000' },
+        { label: 'Lactate test + race-week taper', value: '₱8,000' },
+        { label: 'Goal-race pacing plan + debrief', value: '₱5,000' },
+      ],
+      totalValue: '₱88,000',
+      yourPrice: '₱57,000',
+      bargain: '31,000',
     },
   };
 
@@ -2880,9 +3588,10 @@
     el.innerHTML = `<span>${line.label}</span><span class="val">${line.value}</span>`;
   }
 
-  document.querySelectorAll('.pkg-tab').forEach(tab => {
+  document.querySelectorAll('[data-pkg]').forEach(tab => {
     tab.addEventListener('click', () => {
-      document.querySelectorAll('.pkg-tab').forEach(t => t.classList.remove('active'));
+      // Only deactivate sibling Hyrox tabs (not run tabs)
+      tab.parentElement.querySelectorAll('[data-pkg]').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       const data = packages[tab.dataset.pkg];
 
@@ -2895,7 +3604,9 @@
         document.getElementById('pkgDesc').textContent = data.desc;
         document.getElementById('pkgSessions').textContent = data.sessions;
         document.getElementById('pkgPrice').textContent = data.price;
-        document.getElementById('pkgPer').textContent = data.per;
+        // Split per-session string: e.g. "₱1,700 / session" -> "₱1,700" + "/ session"
+        const perParts = data.per.split(' / ');
+        document.getElementById('pkgPer').innerHTML = perParts[0] + (perParts[1] ? '<span class="per-suffix">/ ' + perParts[1] + '</span>' : '');
 
         const sav = document.getElementById('pkgSavings');
         sav.textContent = data.savings;
@@ -2916,6 +3627,190 @@
 
         pkgContent.classList.remove('swap');
         pkgPriceSide.classList.remove('swap');
+      }, 250);
+    });
+  });
+
+  // ============= RUN PACKAGE SELECTOR =============
+  const runPkgContent = document.getElementById('runPkgContent');
+  const runPkgPriceSide = document.getElementById('runPkgPriceSide');
+  const runPkgValueStack = document.getElementById('runPkgValueStack');
+
+  function renderRunValueLine(idx, line) {
+    const el = document.getElementById('runPkgValueLine' + idx);
+    if (!el || !line) { if (el) el.style.display = 'none'; return; }
+    el.style.display = 'flex';
+    el.innerHTML = `<span>${line.label}</span><span class="val">${line.value}</span>`;
+  }
+
+  document.querySelectorAll('[data-runpkg]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      tab.parentElement.querySelectorAll('[data-runpkg]').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const data = runPackages[tab.dataset.runpkg];
+
+      runPkgContent.classList.add('swap');
+      runPkgPriceSide.classList.add('swap');
+
+      setTimeout(() => {
+        document.getElementById('runPkgName').textContent = data.name;
+        document.getElementById('runPkgHeadline').innerHTML = data.headline;
+        document.getElementById('runPkgDesc').textContent = data.desc;
+        document.getElementById('runPkgSessions').textContent = data.sessions;
+        document.getElementById('runPkgPrice').textContent = data.price;
+        const runPerParts = data.per.split(' / ');
+        document.getElementById('runPkgPer').innerHTML = runPerParts[0] + (runPerParts[1] ? '<span class="per-suffix">/ ' + runPerParts[1] + '</span>' : '');
+
+        const sav = document.getElementById('runPkgSavings');
+        sav.textContent = data.savings;
+        sav.style.visibility = data.showSavings ? 'visible' : 'hidden';
+
+        if (data.showValue && data.valueLines) {
+          runPkgValueStack.style.display = 'block';
+          renderRunValueLine(1, data.valueLines[0]);
+          renderRunValueLine(2, data.valueLines[1]);
+          renderRunValueLine(3, data.valueLines[2]);
+          document.getElementById('runPkgValueTotal').textContent = data.totalValue;
+          document.getElementById('runPkgValuePrice').textContent = data.yourPrice;
+          document.getElementById('runPkgBargainAmount').textContent = data.bargain;
+        } else {
+          runPkgValueStack.style.display = 'none';
+        }
+
+        runPkgContent.classList.remove('swap');
+        runPkgPriceSide.classList.remove('swap');
+      }, 250);
+    });
+  });
+
+
+  // ============= PACKAGE SELECTOR (S&C) =============
+  const scPackages = {
+    starter: {
+      name: '\u2014 4-SESSION S&C STARTER',
+      headline: 'Start with the<br/><span class="italic">movement.</span>',
+      desc: 'Movement screen, primary-lift technique work, and a 2-week S&C block. For athletes new to structured strength training, or returning after a layoff.',
+      sessions: '4 SESSIONS \u00b7 ~2 WEEKS',
+      price: '11,200',
+      per: '\u20b12,800 / session',
+      savings: '',
+      showSavings: false,
+      showValue: true,
+      valueLines: [
+        { label: '4 sessions at base rate', value: '\u20b112,000' },
+        { label: 'Movement screen + lift technique audit', value: '\u20b12,000' },
+        { label: 'Personalized 2-week program', value: '\u20b11,500' },
+      ],
+      totalValue: '\u20b115,500',
+      yourPrice: '\u20b111,200',
+      bargain: '4,300',
+    },
+    foundation: {
+      name: '\u2014 10-SESSION S&C FOUNDATION',
+      headline: 'Build the<br/><span class="italic">base.</span>',
+      desc: 'A focused 5-week block. GPP, primary strength (squat / hinge / press / pull), aerobic engine building, and accessory work for individual weak links.',
+      sessions: '10 SESSIONS \u00b7 ~5 WEEKS',
+      price: '25,000',
+      per: '\u20b12,500 / session',
+      savings: '',
+      showSavings: false,
+      showValue: true,
+      valueLines: [
+        { label: '10 sessions at base rate', value: '\u20b130,000' },
+        { label: 'Personalized 5-week program', value: '\u20b13,500' },
+        { label: 'Mid-block movement re-check', value: 'INCLUDED' },
+      ],
+      totalValue: '\u20b133,500',
+      yourPrice: '\u20b125,000',
+      bargain: '8,500',
+    },
+    engine: {
+      name: '\u2014 20-SESSION S&C ENGINE',
+      headline: 'Lock in the<br/><span class="italic">engine.</span>',
+      desc: 'Two mesocycles. Applied strength under fatigue, race-specific conditioning, lactate threshold test included to anchor zones, and mid-block recovery audit.',
+      sessions: '20 SESSIONS \u00b7 ~10 WEEKS',
+      price: '46,000',
+      per: '\u20b12,300 / session',
+      savings: '',
+      showSavings: false,
+      showValue: true,
+      valueLines: [
+        { label: '20 sessions at base rate', value: '\u20b160,000' },
+        { label: 'Lactate threshold test', value: '\u20b14,500' },
+        { label: 'Programming + accessories', value: '\u20b18,000' },
+      ],
+      totalValue: '\u20b172,500',
+      yourPrice: '\u20b146,000',
+      bargain: '26,500',
+    },
+    full: {
+      name: '\u2014 30-SESSION S&C FULL',
+      headline: 'Crowned at the<br/><span class="italic">peak.</span>',
+      desc: 'Full periodized race prep built around your Hyrox or DEKA calendar. Three mesocycles, peak strength block, lactate test, race-week taper, and post-race debrief.',
+      sessions: '30 SESSIONS \u00b7 12 WEEKS',
+      price: '63,000',
+      per: '\u20b12,100 / session',
+      savings: '',
+      showSavings: false,
+      showValue: true,
+      valueLines: [
+        { label: '30 sessions at base rate', value: '\u20b190,000' },
+        { label: 'Lactate test + race-week taper', value: '\u20b18,000' },
+        { label: 'Programming + Hyrox-specific peaking', value: '\u20b110,000' },
+      ],
+      totalValue: '\u20b1108,000',
+      yourPrice: '\u20b163,000',
+      bargain: '45,000',
+    },
+  };
+
+  const scPkgContent = document.getElementById('scPkgContent');
+  const scPkgPriceSide = document.getElementById('scPkgPriceSide');
+  const scPkgValueStack = document.getElementById('scPkgValueStack');
+
+  function renderScValueLine(idx, line) {
+    const el = document.getElementById('scPkgValueLine' + idx);
+    if (!el || !line) { if (el) el.style.display = 'none'; return; }
+    el.style.display = 'flex';
+    el.innerHTML = `<span>${line.label}</span><span class="val">${line.value}</span>`;
+  }
+
+  document.querySelectorAll('[data-scpkg]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      tab.parentElement.querySelectorAll('[data-scpkg]').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const data = scPackages[tab.dataset.scpkg];
+
+      scPkgContent.classList.add('swap');
+      scPkgPriceSide.classList.add('swap');
+
+      setTimeout(() => {
+        document.getElementById('scPkgName').textContent = data.name;
+        document.getElementById('scPkgHeadline').innerHTML = data.headline;
+        document.getElementById('scPkgDesc').textContent = data.desc;
+        document.getElementById('scPkgSessions').textContent = data.sessions;
+        document.getElementById('scPkgPrice').textContent = data.price;
+        const scPerParts = data.per.split(' / ');
+        document.getElementById('scPkgPer').innerHTML = scPerParts[0] + (scPerParts[1] ? '<span class="per-suffix">/ ' + scPerParts[1] + '</span>' : '');
+
+        const sav = document.getElementById('scPkgSavings');
+        sav.textContent = data.savings;
+        sav.style.visibility = data.showSavings ? 'visible' : 'hidden';
+
+        if (data.showValue && data.valueLines) {
+          scPkgValueStack.style.display = 'block';
+          renderScValueLine(1, data.valueLines[0]);
+          renderScValueLine(2, data.valueLines[1]);
+          renderScValueLine(3, data.valueLines[2]);
+          document.getElementById('scPkgValueTotal').textContent = data.totalValue;
+          document.getElementById('scPkgValuePrice').textContent = data.yourPrice;
+          document.getElementById('scPkgBargainAmount').textContent = data.bargain;
+        } else {
+          scPkgValueStack.style.display = 'none';
+        }
+
+        scPkgContent.classList.remove('swap');
+        scPkgPriceSide.classList.remove('swap');
       }, 250);
     });
   });
