@@ -2336,6 +2336,77 @@
   }
 
   /* End OMMO overrides */
+
+  /* ===================== BOOKING FORM MULTI-CHANNEL ===================== */
+  .bk-channel-row { margin-top: 0.5rem; }
+  .bk-alt-row {
+    margin-top: 1.4rem;
+    padding-top: 1.4rem;
+    border-top: 1px dashed var(--border);
+  }
+  .bk-alt-label {
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    color: var(--text-faint);
+    text-align: center;
+    margin-bottom: 0.9rem;
+    text-transform: uppercase;
+  }
+  .bk-alt-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+  .bk-alt-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.85rem 0.5rem;
+    font-family: var(--f-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  }
+  .bk-alt-btn:hover {
+    border-color: var(--green);
+    background: var(--green-faint);
+    transform: translateY(-1px);
+  }
+  .bk-alt-btn .bk-alt-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .bk-status {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    background: var(--green-faint);
+    border: 1px solid var(--green);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .bk-note {
+    margin-top: 0.85rem;
+    font-family: var(--f-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    text-align: center;
+    text-transform: uppercase;
+  }
+  @media (max-width: 600px) {
+    .bk-alt-grid { grid-template-columns: 1fr; }
+    .bk-alt-btn { flex-direction: row; justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -3267,7 +3338,7 @@
       </div>
     </div>
 
-    <form class="book-form" onsubmit="handleBook(event)">
+    <form class="book-form" id="bookForm" onsubmit="return false;">
       <div class="form-field">
         <label>Your name</label>
         <input type="text" name="name" required placeholder="Full name" />
@@ -3303,7 +3374,19 @@
         <label>What's your goal?</label>
         <textarea name="goal" placeholder="First Hyrox? Sub-90 finish? Half-marathon PR? Get specific."></textarea>
       </div>
-      <button type="submit" class="submit-btn"><span>Submit Inquiry</span></button>
+      <div class="bk-channel-row">
+        <button type="button" class="submit-btn submit-btn-primary" data-bk-channel="email" onclick="bkSendVia('email')"><span>Send via Email</span></button>
+      </div>
+      <div class="bk-alt-row">
+        <div class="bk-alt-label">&mdash; OR MESSAGE DIRECTLY &mdash;</div>
+        <div class="bk-alt-grid">
+          <button type="button" class="bk-alt-btn" data-bk-channel="wa" onclick="bkSendVia('wa')"><span class="bk-alt-icon">&#x1F4AC;</span><span>WhatsApp</span></button>
+          <button type="button" class="bk-alt-btn" data-bk-channel="ig" onclick="bkSendVia('ig')"><span class="bk-alt-icon">&#x1F4F7;</span><span>Instagram</span></button>
+          <button type="button" class="bk-alt-btn" data-bk-channel="viber" onclick="bkSendVia('viber')"><span class="bk-alt-icon" style="color:#7360F2;">&#x25CF;</span><span>Viber</span></button>
+        </div>
+      </div>
+      <div class="bk-status" id="bkStatus" style="display:none;"></div>
+      <div class="bk-note">Email delivery uses FormSubmit (free service) &middot; first submission requires a one-time activation by David.</div>
       <div style="margin-top:0.8rem;font-size:0.7rem;font-family:var(--f-mono);letter-spacing:0.12em;color:var(--text-faint);text-transform:uppercase;text-align:center;">Submitting opens Instagram — tap send to deliver the DM.</div>
     </form>
   </div>
@@ -3817,29 +3900,57 @@
   });
 
   // ============= BOOKING FORM =============
-  function handleBook(e) {
-    e.preventDefault();
-    const form = e.target;
+  // ============= BOOKING FORM (MULTI-CHANNEL) =============
+  function bkFormatMsg(form) {
     const nm = (form.name.value || '').trim();
     const ct = (form.contact.value || '').trim();
     const it = form.interest.value;
     const gl = (form.goal.value || '').trim();
-    const msg = "Hi David! Inquiry from your Ommo Athletica, Greenhills site:\n\n" +
-                "Name: " + nm + "\n" +
-                "Contact: " + ct + "\n" +
-                "Interested in: " + it + "\n" +
-                "Goal: " + (gl || "(not specified)") + "\n\n" +
-                "Looking forward to your reply.";
-    if (navigator.clipboard) { navigator.clipboard.writeText(msg).catch(function(){}); }
-    const igUrl = "https://ig.me/m/davidsingson5?text=" + encodeURIComponent(msg);
-    window.open(igUrl, "_blank", "noopener,noreferrer");
-    const btn = form.querySelector('.submit-btn span');
-    btn.textContent = 'Opening Instagram — tap SEND to deliver';
-    form.querySelector('.submit-btn').style.background = 'var(--green-glow)';
-    setTimeout(function() {
-      btn.textContent = 'Submit Inquiry';
-      form.querySelector('.submit-btn').style.background = 'var(--green)';
-    }, 6000);
+    return "Hi David! Inquiry from your Ommo Athletica, Greenhills site:\n\n" +
+           "Name: " + nm + "\n" +
+           "Contact: " + ct + "\n" +
+           "Interested in: " + it + "\n" +
+           "Goal: " + (gl || "(not specified)") + "\n\n" +
+           "Looking forward to your reply.";
+  }
+  function bkSetStatus(html) {
+    const el = document.getElementById('bkStatus');
+    if (el) { el.innerHTML = html; el.style.display = html ? 'block' : 'none'; }
+  }
+  function bkSendVia(channel) {
+    const form = document.getElementById('bookForm');
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    const msg = bkFormatMsg(form);
+    if (navigator.clipboard) { try { navigator.clipboard.writeText(msg); } catch(e){} }
+    if (channel === 'email') {
+      const data = new FormData(form);
+      data.set('_subject', 'Ommo Athletica, Greenhills inquiry: ' + (form.name.value || 'New'));
+      data.set('_template', 'table');
+      data.set('_captcha', 'false');
+      data.set('_message', msg);
+      const btn = document.querySelector('[data-bk-channel="email"] span');
+      if (btn) btn.textContent = 'Sending...';
+      fetch('https://formsubmit.co/ajax/david.singson@gmail.com', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(r){ return r.json(); }).then(function(d){
+        bkSetStatus('Sent! David will reply within 24 hours.<br><span style="color:var(--text-mute);font-size:0.85em;">(If this is your first submission, please also check your inbox \u2014 the email service requires a one-time activation by David.)</span>');
+        if (btn) btn.textContent = '\u2713 Email sent';
+        form.reset();
+        setTimeout(function(){ if (btn) btn.textContent = 'Send via Email'; }, 5000);
+      }).catch(function(e){
+        bkSetStatus('Could not send via email \u2014 please use one of the direct-message buttons below.');
+        if (btn) btn.textContent = 'Send via Email';
+      });
+      return;
+    }
+    let url, label;
+    if (channel === 'wa')    { url = 'https://wa.me/639171284009?text=' + encodeURIComponent(msg); label = 'WhatsApp'; }
+    else if (channel === 'ig')    { url = 'https://ig.me/m/davidsingson5?text=' + encodeURIComponent(msg); label = 'Instagram'; }
+    else if (channel === 'viber') { url = 'viber://chat?number=%2B639171284009&text=' + encodeURIComponent(msg); label = 'Viber'; }
+    window.open(url, '_blank', 'noopener,noreferrer');
+    bkSetStatus('Opening ' + label + ' \u2014 tap SEND in the app to deliver. (Inquiry text is also copied to your clipboard.)');
   }
 </script>
 
