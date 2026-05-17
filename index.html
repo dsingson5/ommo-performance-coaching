@@ -3304,6 +3304,7 @@
         <textarea name="goal" placeholder="First Hyrox? Sub-90 finish? Half-marathon PR? Get specific."></textarea>
       </div>
       <button type="submit" class="submit-btn"><span>Submit Inquiry</span></button>
+      <div style="margin-top:0.8rem;font-size:0.7rem;font-family:var(--f-mono);letter-spacing:0.12em;color:var(--text-faint);text-transform:uppercase;text-align:center;">Submitting opens Instagram — tap send to deliver the DM.</div>
     </form>
   </div>
 </section>
@@ -3818,10 +3819,27 @@
   // ============= BOOKING FORM =============
   function handleBook(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.submit-btn span');
-    btn.textContent = 'Sent — David will be in touch';
-    e.target.querySelector('.submit-btn').style.background = 'var(--green-glow)';
-    setTimeout(() => { e.target.reset(); btn.textContent = 'Submit Inquiry'; e.target.querySelector('.submit-btn').style.background = 'var(--green)'; }, 4000);
+    const form = e.target;
+    const nm = (form.name.value || '').trim();
+    const ct = (form.contact.value || '').trim();
+    const it = form.interest.value;
+    const gl = (form.goal.value || '').trim();
+    const msg = "Hi David! Inquiry from your Ommo Athletica, Greenhills site:\n\n" +
+                "Name: " + nm + "\n" +
+                "Contact: " + ct + "\n" +
+                "Interested in: " + it + "\n" +
+                "Goal: " + (gl || "(not specified)") + "\n\n" +
+                "Looking forward to your reply.";
+    if (navigator.clipboard) { navigator.clipboard.writeText(msg).catch(function(){}); }
+    const igUrl = "https://ig.me/m/davidsingson5?text=" + encodeURIComponent(msg);
+    window.open(igUrl, "_blank", "noopener,noreferrer");
+    const btn = form.querySelector('.submit-btn span');
+    btn.textContent = 'Opening Instagram — tap SEND to deliver';
+    form.querySelector('.submit-btn').style.background = 'var(--green-glow)';
+    setTimeout(function() {
+      btn.textContent = 'Submit Inquiry';
+      form.querySelector('.submit-btn').style.background = 'var(--green)';
+    }, 6000);
   }
 </script>
 
