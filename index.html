@@ -2678,6 +2678,53 @@
   @media (max-width: 520px) {
     .coach-creds-grid { grid-template-columns: 1fr; }
   }
+
+  /* ===================== COLLAPSIBLE SECTIONS ===================== */
+  .section-collapsible .section-head {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    padding-right: 3rem;
+    transition: opacity 0.2s ease;
+  }
+  .section-collapsible .section-head:hover { opacity: 0.85; }
+  .section-collapse-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--f-display);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--green);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: rgba(0,0,0,0.04);
+    flex-shrink: 0;
+  }
+  .section-collapsible.is-open .section-collapse-toggle {
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .section-collapse-body {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+  }
+  .section-collapsible.is-open .section-collapse-body {
+    max-height: 8000px;
+    opacity: 1;
+  }
+  /* Reduce vertical padding when collapsed */
+  .section-collapsible:not(.is-open) {
+    padding-bottom: 2.5rem;
+  }
 </style>
 </head>
 <body>
@@ -3401,7 +3448,7 @@
 </div>
 
 <!-- PACKAGES (HYROX 1-ON-1) -->
-<section class="section-pad packages" id="packages">
+<section class="section-pad packages section-collapsible" id="packages">
   <div class="section-head reveal">
     <div>
       <div class="section-num">04 — HYROX PACKAGES</div>
@@ -3411,7 +3458,8 @@
       For 1-on-1 Hyrox Performance Coaching. Every block bundles programming, sims, and add-ons that would cost more à la carte.
       Compare the total value against your price.
     </p>
-  </div>
+  <span class="section-collapse-toggle" aria-hidden="true">+</span></div>
+  <div class="section-collapse-body">
 
   <div class="pkg-selector reveal">
     <button class="pkg-tab active" data-pkg="starter">4 · Starter</button>
@@ -3451,10 +3499,11 @@
       <span class="item">Gym access subject to membership</span>
     </div>
   </div>
+</div>
 </section>
 
 <!-- RUNNING PACKAGES -->
-<section class="section-pad packages" id="run-packages">
+<section class="section-pad packages section-collapsible" id="run-packages">
   <div class="section-head reveal">
     <div>
       <div class="section-num">04B — RUNNING PACKAGES</div>
@@ -3464,7 +3513,8 @@
       For Running Coaching — half-marathon, marathon, trail, or fixing the Hyrox run.
       Same polarized 80/20 logic. Pace anchored to actual lactate thresholds, not generic Garmin zones.
     </p>
-  </div>
+  <span class="section-collapse-toggle" aria-hidden="true">+</span></div>
+  <div class="section-collapse-body">
 
   <div class="pkg-selector reveal">
     <button class="pkg-tab active" data-runpkg="starter">4 · Run Starter</button>
@@ -3503,10 +3553,11 @@
       <span class="item">Race-week taper protocol</span>
     </div>
   </div>
+</div>
 </section>
 
 <!-- HYBRID S&C PACKAGES -->
-<section class="section-pad packages" id="sc-packages">
+<section class="section-pad packages section-collapsible" id="sc-packages">
   <div class="section-head reveal">
     <div>
       <div class="section-num">04C &mdash; S&amp;C PACKAGES</div>
@@ -3516,7 +3567,8 @@
       For Hybrid Strength &amp; Conditioning. Periodized blocks so strength and endurance develop together,
       with neither stealing from the other. Anchored to a 6&ndash;12 week mesocycle plan.
     </p>
-  </div>
+  <span class="section-collapse-toggle" aria-hidden="true">+</span></div>
+  <div class="section-collapse-body">
 
   <div class="pkg-selector reveal">
     <button class="pkg-tab active" data-scpkg="starter">4 &middot; S&amp;C Starter</button>
@@ -3555,10 +3607,11 @@
       <span class="item">Hyrox / DEKA race-day taper</span>
     </div>
   </div>
+</div>
 </section>
 
 <!-- CYCLE-CENTRIC TRAINING (FEMALE ATHLETES) -->
-<section class="section-pad coach" id="cycle">
+<section class="section-pad coach section-collapsible" id="cycle">
   <div class="section-head reveal">
     <div>
       <div class="section-num">05 — CYCLE-CENTRIC TRAINING</div>
@@ -3569,7 +3622,8 @@
       Programming written around your hormonal phases, with intensity and volume calibrated to where you actually are
       that week — not a generic 7-day repeat.
     </p>
-  </div>
+  <span class="section-collapse-toggle" aria-hidden="true">+</span></div>
+  <div class="section-collapse-body">
 
   <div class="coach-grid">
     <div class="coach-bio reveal">
@@ -3703,6 +3757,7 @@
       </p>
     </div>
   </div>
+</div>
 </section>
 
 <!-- BOOKING -->
@@ -4439,6 +4494,14 @@
       const v = this.querySelector('video');
       if (v) v.pause();
     }
+  });
+
+  // ============= TOGGLE COLLAPSIBLE SECTIONS =============
+  document.querySelectorAll('.section-collapsible .section-head').forEach(function(head) {
+    head.addEventListener('click', function() {
+      const sec = head.closest('.section-collapsible');
+      if (sec) sec.classList.toggle('is-open');
+    });
   });
 
 </script>
