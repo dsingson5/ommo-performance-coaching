@@ -2692,21 +2692,37 @@
     position: absolute;
     right: 0;
     top: 50%;
-    transform: translateY(-50%);
-    font-family: var(--f-display);
-    font-size: 2rem;
-    line-height: 1;
-    color: var(--green);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     width: 2.4rem;
     height: 2.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: transparent;        /* hide the literal "+" character */
+    font-size: 0;
+    transform: translateY(-50%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid var(--border);
     border-radius: 50%;
     background: rgba(0,0,0,0.04);
     flex-shrink: 0;
+  }
+  /* CSS-drawn plus: two bars centered, no font dependency */
+  .section-collapse-toggle::before,
+  .section-collapse-toggle::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: var(--green);
+    border-radius: 1px;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  }
+  .section-collapse-toggle::before {  /* horizontal bar */
+    width: 44%;
+    height: 2px;
+    transform: translate(-50%, -50%);
+  }
+  .section-collapse-toggle::after {   /* vertical bar */
+    width: 2px;
+    height: 44%;
+    transform: translate(-50%, -50%);
   }
   .section-collapsible.is-open .section-collapse-toggle {
     transform: translateY(-50%) rotate(45deg);
@@ -3624,140 +3640,110 @@
     </p>
   <span class="section-collapse-toggle" aria-hidden="true">+</span></div>
   <div class="section-collapse-body">
+    <div class="coach-grid">
+      <div class="coach-bio reveal">
+        <p class="coach-body">
+          The menstrual cycle is a monthly hormonal shift that changes how the body responds to training.
+          Estrogen and progesterone modulate <strong>substrate utilization, core temperature, recovery, ligamentous laxity, and central drive.</strong>
+          Ignoring that is a missed signal.
+        </p>
+        <p class="coach-body">
+          We program around <strong>your</strong> cycle &mdash; tracked over 2&ndash;3 months, cross-referenced with HRV, RHR, sleep, and session RPE.
+          Protect adaptation when your physiology is primed for it; stop trying to PR in a week your system is already taxed.
+        </p>
+        <p class="coach-body">
+          Built on the same lactate-anchored, polarized 80/20 framework as the rest of the coaching &mdash; cycle-syncing is the resolution layer, not a replacement.
+        </p>
+      </div>
 
-  <div class="coach-grid">
-    <div class="coach-bio reveal">
-      <div class="coach-role" style="margin-bottom:1rem;">Why cycle-syncing matters</div>
-      <p class="coach-body">
-        The menstrual cycle is a hormonal environment shift every athlete with one moves through every month —
-        and it changes how the body responds to training. Estrogen and progesterone modulate
-        <strong>substrate utilization, core temperature, recovery rate, ligamentous laxity, and central drive.</strong>
-        Ignoring this is not equality — it is a missed signal.
-      </p>
-      <p class="coach-body">
-        We do not program around stereotypes. We program around <strong>your</strong> cycle, tracked over 2–3 months,
-        cross-referenced with your HRV, RHR, sleep, and session RPE.
-        The goal: protect adaptation when your body is primed for it, and stop trying to PR in a week your physiology is already taxed.
-      </p>
-      <p class="coach-body">
-        <strong>Built on the same data-led foundation as the rest of the methodology</strong> — Seiler's polarized 80/20,
-        San Millan's lactate-anchored zones, and Weersma's hybrid programming principles.
-        Cycle-syncing is the resolution layer, not a replacement for the framework.
-      </p>
+      <div class="credentials reveal-stagger">
+        <div class="cred">
+          <div class="cred-num">01</div>
+          <div class="cred-title">Menstrual</div>
+          <div class="cred-sub">Days 1&ndash;5 &middot; Hormones low</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">02</div>
+          <div class="cred-title">Follicular</div>
+          <div class="cred-sub">Days 6&ndash;13 &middot; Estrogen rising</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">03</div>
+          <div class="cred-title">Ovulatory</div>
+          <div class="cred-sub">Days 14&ndash;16 &middot; Estrogen peak</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">04</div>
+          <div class="cred-title">Early Luteal</div>
+          <div class="cred-sub">Days 17&ndash;22 &middot; Progesterone rising</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">05</div>
+          <div class="cred-title">Late Luteal</div>
+          <div class="cred-sub">Days 23&ndash;28 &middot; PMS window</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">06</div>
+          <div class="cred-title">N = 1</div>
+          <div class="cred-sub">Your data &gt; generic chart</div>
+        </div>
+      </div>
     </div>
 
-    <div class="credentials reveal-stagger">
-      <div class="cred">
-        <div class="cred-num">01</div>
-        <div class="cred-title">Menstrual</div>
-        <div class="cred-sub">Days 1–5 · Hormones low</div>
+    <div class="method reveal">
+      <div class="method-label">&mdash; PROGRAMMING BY PHASE</div>
+      <div class="method-title">
+        Heavy lifting and threshold work where the hormonal environment is primed; Zone 2 and technique work when fatigue tolerance is lower.
       </div>
-      <div class="cred">
-        <div class="cred-num">02</div>
-        <div class="cred-title">Follicular</div>
-        <div class="cred-sub">Days 6–13 · Estrogen rising</div>
+      <div class="method-stats">
+        <div class="ms-item">
+          <div class="v">HIGH</div>
+          <div class="l">Follicular: PR attempts, threshold, VO&#8322; max</div>
+        </div>
+        <div class="ms-item">
+          <div class="v">PEAK</div>
+          <div class="l">Ovulatory: race sims, top-end intensity</div>
+        </div>
+        <div class="ms-item">
+          <div class="v">Z2</div>
+          <div class="l">Luteal: aerobic base, fat oxidation</div>
+        </div>
+        <div class="ms-item">
+          <div class="v">DELOAD</div>
+          <div class="l">Late luteal / menstrual: optional offload</div>
+        </div>
       </div>
-      <div class="cred">
-        <div class="cred-num">03</div>
-        <div class="cred-title">Ovulatory</div>
-        <div class="cred-sub">Days 14–16 · Estrogen peak</div>
+    </div>
+
+    <div class="coach-grid" style="margin-top:3rem;">
+      <div class="coach-bio reveal">
+        <div class="coach-role" style="margin-bottom:1rem;">Phase priorities</div>
+        <ul class="service-features">
+          <li><strong>Follicular (6&ndash;13):</strong> heaviest strength loads, threshold intervals, lactate-anchored VO&#8322; work. High-CHO fueling.</li>
+          <li><strong>Ovulatory (14&ndash;16):</strong> race sims, time trials, 1RM attempts &mdash; sharp on landing mechanics (relaxin up).</li>
+          <li><strong>Early luteal (17&ndash;22):</strong> Zone 2 dominance, fat oxidation, longer warm-ups, electrolyte priority. Heat tolerance drops.</li>
+          <li><strong>Late luteal (23&ndash;28):</strong> auto-regulated loads, optional skill / mobility focus if PMS hits.</li>
+          <li><strong>Menstrual (1&ndash;5):</strong> calibrated to morning HRV &amp; RHR &mdash; not reflexively reduced.</li>
+        </ul>
       </div>
-      <div class="cred">
-        <div class="cred-num">04</div>
-        <div class="cred-title">Early Luteal</div>
-        <div class="cred-sub">Days 17–22 · Progesterone rising</div>
-      </div>
-      <div class="cred">
-        <div class="cred-num">05</div>
-        <div class="cred-title">Late Luteal</div>
-        <div class="cred-sub">Days 23–28 · PMS window</div>
-      </div>
-      <div class="cred">
-        <div class="cred-num">06</div>
-        <div class="cred-title">N = 1</div>
-        <div class="cred-sub">Your data &gt; generic chart</div>
+
+      <div class="coach-bio reveal">
+        <div class="coach-role" style="margin-bottom:1rem;">What we track + caveats</div>
+        <ul class="service-features">
+          <li>Cycle length and phase entry (period-tracker / BBT)</li>
+          <li>Morning HRV + resting heart rate</li>
+          <li>Session RPE and bar-speed</li>
+          <li>Sleep duration + quality</li>
+          <li>Iron / ferritin status (annual minimum)</li>
+        </ul>
+        <p class="coach-body" style="margin-top:1.2rem; font-size:0.9rem;">
+          <strong>Caveats:</strong> Hormonal contraception keeps the hormonal environment constant &mdash; we anchor to HRV/sleep/load instead.
+          PCOS, endometriosis, perimenopause, or irregular cycles &mdash; framework still applies, using your <em>actual</em> data, not a textbook 28-day model.
+          Nothing here replaces medical advice from your physician or OB-GYN.
+        </p>
       </div>
     </div>
   </div>
-
-  <div class="method reveal">
-    <div class="method-label">— PROGRAMMING BY PHASE</div>
-    <div class="method-title">
-      Every phase has a physiological signature. Programming respects it — heavy lifting and threshold work concentrated
-      where the hormonal environment is primed for adaptation, Zone 2 and technique work emphasized when fatigue tolerance is lower.
-    </div>
-    <div class="method-stats">
-      <div class="ms-item">
-        <div class="v">HIGH</div>
-        <div class="l">Follicular: PR attempts, threshold, VO₂ max</div>
-      </div>
-      <div class="ms-item">
-        <div class="v">PEAK</div>
-        <div class="l">Ovulatory: race sims, top-end intensity</div>
-      </div>
-      <div class="ms-item">
-        <div class="v">Z2</div>
-        <div class="l">Luteal: aerobic base, fat oxidation, technique</div>
-      </div>
-      <div class="ms-item">
-        <div class="v">DELOAD</div>
-        <div class="l">Late luteal / menstrual: optional offload week</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="coach-grid" style="margin-top:3rem;">
-    <div class="coach-bio reveal">
-      <div class="coach-role" style="margin-bottom:1rem;">What this looks like in practice</div>
-      <p class="coach-body">
-        <strong>Follicular phase (days 6–13):</strong> Rising estrogen improves insulin sensitivity, recovery, and pain tolerance.
-        This is when we schedule the heaviest strength loads, threshold intervals, and lactate-anchored VO₂ work.
-        Bodies respond better to high-CHO fueling here — performance nutrition is timed to match.
-      </p>
-      <p class="coach-body">
-        <strong>Ovulatory window (days 14–16):</strong> Peak estrogen often produces peak power output and a small drop in perceived effort.
-        Race simulations, time trials, and 1RM attempts ideally land here. Caveat: relaxin elevates,
-        so we are sharp on landing mechanics and lifting technique to protect joints.
-      </p>
-      <p class="coach-body">
-        <strong>Early luteal phase (days 17–22):</strong> Progesterone rises, core temperature lifts ~0.3–0.5°C, RPE climbs at the same workload.
-        Volume holds; intensity is rationalized. Zone 2 dominance, more fat-oxidation work, longer warm-ups,
-        electrolyte priority. Heat tolerance drops — outdoor Z2 runs are scheduled cooler.
-      </p>
-      <p class="coach-body">
-        <strong>Late luteal phase (days 23–28):</strong> If PMS symptoms hit, programming flexes — we will trade a hard threshold session
-        for technical skill work or a longer mobility block. Strength sessions stay, but loads are auto-regulated against bar speed
-        and RPE rather than fixed percentages.
-      </p>
-      <p class="coach-body">
-        <strong>Menstrual phase (days 1–5):</strong> Hormone levels drop, and many athletes actually feel better than expected by day 3.
-        We monitor energy and iron status. Training is not reflexively reduced — it is calibrated to how you feel
-        and what your HRV / RHR data shows that morning.
-      </p>
-    </div>
-
-    <div class="coach-bio reveal">
-      <div class="coach-role" style="margin-bottom:1rem;">What we track</div>
-      <ul class="service-features">
-        <li>Cycle length and phase entry (period-tracker app or basal body temp)</li>
-        <li>Morning HRV + resting heart rate (Whoop / Garmin / Oura)</li>
-        <li>Session RPE and bar-speed (where applicable)</li>
-        <li>Sleep duration + sleep quality scores</li>
-        <li>Symptom log: cramps, bloating, mood, energy</li>
-        <li>Iron / ferritin status (annual, more if running high mileage)</li>
-        <li>Heat tolerance + hydration / electrolyte response</li>
-      </ul>
-      <p class="coach-body" style="margin-top:1.5rem;">
-        <strong>Important caveats.</strong> Cycle-syncing applies to athletes with a natural menstrual cycle.
-        If you are on hormonal contraception (combined pill, hormonal IUD, implant), the hormonal environment is constant —
-        we anchor programming to HRV, sleep, and training load instead.
-        If you have PCOS, endometriosis, are perimenopausal, or have an irregular cycle, the framework still applies —
-        we just use your <em>actual</em> cycle data rather than a textbook 28-day model.
-        And nothing here replaces medical advice from your physician or OB-GYN.
-      </p>
-    </div>
-  </div>
-</div>
 </section>
 
 <!-- BOOKING -->
