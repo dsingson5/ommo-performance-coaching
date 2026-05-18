@@ -2716,6 +2716,82 @@
     box-shadow: 0 24px 64px rgba(0,0,0,0.6);
     background: #000;
   }
+
+  /* ===================== COACH CREDENTIALS (certificates) ===================== */
+  .coach-creds {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--border);
+  }
+  .coach-creds-label {
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.85rem;
+  }
+  .coach-creds-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+  }
+  .coach-cred-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    text-decoration: none;
+    color: inherit;
+    aspect-ratio: 4 / 3;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .coach-cred-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: brightness(0.94);
+    transition: filter 0.3s ease, transform 0.4s ease;
+  }
+  .coach-cred-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+    border-color: var(--green);
+  }
+  .coach-cred-card:hover img {
+    filter: brightness(1);
+    transform: scale(1.03);
+  }
+  .coach-cred-cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.55rem 0.7rem;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.82));
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .coach-cred-name {
+    font-family: var(--f-display);
+    font-size: 0.82rem;
+    letter-spacing: 0.07em;
+    color: #fff;
+  }
+  .coach-cred-sub {
+    font-family: var(--f-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green-glow, rgba(255,255,255,0.78));
+  }
+  @media (max-width: 520px) {
+    .coach-creds-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -2839,6 +2915,25 @@
           <img src="https://dsingson5.github.io/hybrid-crew/images/students/race-sandbag-lunges-thumb.jpg" alt="David Singson, Hyrox sandbag lunges" loading="lazy" />
           <span class="coach-bio-photo-cap">Sandbag lunges</span>
         </a>
+      </div>
+      <div class="coach-creds">
+        <div class="coach-creds-label">&mdash; CERTIFIED BY HYROX ACADEMY</div>
+        <div class="coach-creds-grid">
+          <a class="coach-cred-card" href="https://dsingson5.github.io/hybrid-crew/certificates/hyrox-l1-cert.pdf" target="_blank" rel="noopener" aria-label="View Hyrox Academy Level 1 certificate (PDF)">
+            <img src="https://dsingson5.github.io/hybrid-crew/certificates/hyrox-l1-cert.jpg" alt="Hyrox Academy Level One Creating Athletes certificate" loading="lazy" />
+            <div class="coach-cred-cap">
+              <span class="coach-cred-name">Hyrox Academy Level 1</span>
+              <span class="coach-cred-sub">Creating Athletes &middot; Hamburg 03.2025</span>
+            </div>
+          </a>
+          <a class="coach-cred-card" href="https://dsingson5.github.io/hybrid-crew/certificates/hyrox-foundations-cert.pdf" target="_blank" rel="noopener" aria-label="View Hyrox Foundations certificate (PDF)">
+            <img src="https://dsingson5.github.io/hybrid-crew/certificates/hyrox-foundations-cert.jpg" alt="Hyrox365 Foundation Course certificate" loading="lazy" />
+            <div class="coach-cred-cap">
+              <span class="coach-cred-name">Hyrox Foundations</span>
+              <span class="coach-cred-sub">HYROX365 Foundation Course &middot; 02.2025</span>
+            </div>
+          </a>
+        </div>
       </div>
       <div class="coach-social">
         <a href="https://www.instagram.com/davidsingson5/" target="_blank" rel="noopener" class="ig-link">
@@ -3312,10 +3407,6 @@
       </video>
       <div class="gal-cap"><span>Kettlebell work</span><span class="gal-sub">Gym session &middot; play</span></div>
       <div class="gal-play-badge">&#9658;</div>
-    </a>
-    <a class="gal-item" href="https://dsingson5.github.io/hybrid-crew/images/students/run-palms.jpg" data-cap="Run training &mdash; palm-tree route">
-      <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/run-palms-thumb.jpg" alt="Mid-stride run, palm trees" />
-      <div class="gal-cap"><span>Palm-tree run</span><span class="gal-sub">Outdoor &middot; mid-stride</span></div>
     </a>
     <a class="gal-item gal-video gal-wide" href="https://dsingson5.github.io/hybrid-crew/videos/rowing.mp4" data-cap="Concept2 rowing &mdash; race-pace session">
       <video autoplay muted loop playsinline preload="metadata" poster="https://dsingson5.github.io/hybrid-crew/videos/rowing-poster.jpg">
