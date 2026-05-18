@@ -2521,6 +2521,110 @@
     a.svc-inquire { font-size: 0.75rem; }
   }
 
+
+  /* ===================== GALLERY ===================== */
+  .gallery-section { position: relative; z-index: 1; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+    grid-auto-rows: 200px;
+  }
+  .gal-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    background: var(--bg-card, #0c0817);
+    border: 1px solid var(--border, rgba(163,204,46,0.12));
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .gal-tall { grid-row: span 2; }
+  .gal-wide { grid-column: span 2; }
+  .gal-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.3s ease;
+    filter: brightness(0.92) saturate(1.05);
+  }
+  .gal-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    border-color: var(--green, #A3CC2E);
+  }
+  .gal-item:hover img {
+    transform: scale(1.04);
+    filter: brightness(1) saturate(1.1);
+  }
+  .gal-cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.85rem 1rem;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.78) 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    transform: translateY(10%);
+    opacity: 0.85;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .gal-item:hover .gal-cap { transform: translateY(0); opacity: 1; }
+  .gal-cap span:first-child {
+    font-family: var(--f-display, 'Anton', sans-serif);
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    color: #fff;
+  }
+  .gal-cap .gal-sub {
+    font-family: var(--f-mono, monospace);
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--green-glow, rgba(255,255,255,0.7));
+  }
+  @media (max-width: 900px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+    .gal-tall { grid-row: span 1; }
+    .gal-wide { grid-column: span 2; }
+  }
+  @media (max-width: 520px) {
+    .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; gap: 0.5rem; }
+    .gal-wide { grid-column: auto; }
+  }
+
+  /* ===================== LIGHTBOX ===================== */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(6, 3, 15, 0.92);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: zoom-out;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: min(96vw, 1600px); max-height: 88vh; object-fit: contain; border-radius: 4px; box-shadow: 0 24px 64px rgba(0,0,0,0.6); }
+  .lb-cap { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-family: var(--f-mono, monospace); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green, #A3CC2E); }
+  .lb-close { position: absolute; top: 1rem; right: 1.5rem; background: transparent; border: none; color: #fff; font-size: 2rem; cursor: pointer; padding: 0.3rem 0.8rem; line-height: 1; }
+  .lb-close:hover { color: var(--green, #A3CC2E); }
+
+  /* Coach portrait inline */
+  .coach-portrait-img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
 </style>
 </head>
 <body>
@@ -2635,6 +2739,7 @@
         is debriefed against the data afterward.
       </p>
 
+      <img class="coach-portrait-img" src="https://dsingson5.github.io/hybrid-crew/images/students/coach-portrait.jpg" alt="David Singson, USRN, Hyrox L1 Performance Coach" loading="lazy" />
       <div class="coach-social">
         <a href="https://www.instagram.com/davidsingson5/" target="_blank" rel="noopener" class="ig-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -3082,6 +3187,54 @@
 
   </div>
 </section>
+
+
+<!-- IN THE FIELD / CREW IN ACTION -->
+<section class="section-pad gallery-section" id="gallery">
+  <div class="section-head reveal">
+    <div>
+      <div class="section-num">+ &mdash; IN THE FIELD</div>
+      <h2 class="section-title">The work, <span class="italic">shown.</span></h2>
+    </div>
+    <p class="section-aside">
+      Race day at Hyrox Bangkok. Crew sessions in Manila. Doubles, sandbag lunges, farmer's carries &mdash; the prescription, lived.
+    </p>
+  </div>
+
+  <div class="gallery-grid reveal-stagger">
+    <a class="gal-item gal-tall" href="https://dsingson5.github.io/hybrid-crew/images/students/race-finish-celebration.jpg" data-cap="Finish line &mdash; Hyrox Bangkok 2026">
+      <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/race-finish-celebration-thumb.jpg" alt="Finish line, Hyrox Bangkok" />
+      <div class="gal-cap"><span>Finish line</span><span class="gal-sub">Hyrox Bangkok 2026</span></div>
+    </a>
+    <a class="gal-item" href="https://dsingson5.github.io/hybrid-crew/images/students/race-sandbag-lunges.jpg" data-cap="Sandbag lunges &mdash; mid-race">
+      <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/race-sandbag-lunges-thumb.jpg" alt="Sandbag lunges at Hyrox" />
+      <div class="gal-cap"><span>Sandbag lunges</span><span class="gal-sub">Station 7 &middot; Hyrox</span></div>
+    </a>
+    <a class="gal-item" href="https://dsingson5.github.io/hybrid-crew/images/students/race-farmers-carry.jpg" data-cap="Farmer's carry &mdash; Hyrox Bangkok">
+      <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/race-farmers-carry-thumb.jpg" alt="Farmer's carry, Hyrox" />
+      <div class="gal-cap"><span>Farmer's carry</span><span class="gal-sub">200m &middot; 2x24kg</span></div>
+    </a>
+    <a class="gal-item" href="https://dsingson5.github.io/hybrid-crew/images/students/race-post-finish.jpg" data-cap="Doubles partner post-finish">
+      <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/race-post-finish-thumb.jpg" alt="Post-race with doubles partner" />
+      <div class="gal-cap"><span>Doubles done</span><span class="gal-sub">Post-race &middot; Bangkok</span></div>
+    </a>
+    <a class="gal-item gal-wide" href="https://dsingson5.github.io/hybrid-crew/images/students/crew-mrt.jpg" data-cap="Hybrid Crew on the way to the start">
+      <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/crew-mrt-thumb.jpg" alt="Hybrid Crew on the MRT" />
+      <div class="gal-cap"><span>The crew</span><span class="gal-sub">On the way to the start</span></div>
+    </a>
+    <a class="gal-item" href="https://dsingson5.github.io/hybrid-crew/images/students/crew-outdoor.jpg" data-cap="Outdoor session &mdash; Manila">
+      <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/crew-outdoor-thumb.jpg" alt="Outdoor session" />
+      <div class="gal-cap"><span>Long-run squad</span><span class="gal-sub">Manila &middot; weekend</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- Simple lightbox overlay (one element, JS-driven) -->
+<div id="lightbox" class="lightbox" onclick="if(event.target===this||event.target.classList.contains('lb-close'))this.classList.remove('open')">
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <img id="lbImg" alt="" />
+  <div class="lb-cap" id="lbCap"></div>
+</div>
 
 <!-- PACKAGES (HYROX 1-ON-1) -->
 <section class="section-pad packages" id="packages">
@@ -4066,6 +4219,30 @@
     window.open(url, '_blank', 'noopener,noreferrer');
     bkSetStatus('Opening ' + label + ' \u2014 tap SEND in the app to deliver. (Inquiry text is also copied to your clipboard.)');
   }
+
+  // ============= LIGHTBOX =============
+  document.querySelectorAll('.gal-item').forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      const src = item.getAttribute('href');
+      const cap = item.getAttribute('data-cap') || '';
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lbImg');
+      const capEl = document.getElementById('lbCap');
+      if (lb && img) {
+        img.src = src;
+        if (capEl) capEl.innerHTML = cap;
+        lb.classList.add('open');
+      }
+    });
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const lb = document.getElementById('lightbox');
+      if (lb) lb.classList.remove('open');
+    }
+  });
+
 </script>
 
 </body>
