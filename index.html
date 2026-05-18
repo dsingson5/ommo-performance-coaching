@@ -2557,6 +2557,51 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }
+
+  /* ===================== VIDEO TILES IN GALLERY ===================== */
+  .gal-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.92) saturate(1.05);
+  }
+  .gal-video:hover video {
+    filter: brightness(1) saturate(1.1);
+  }
+  .gal-play-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  .gal-video:hover .gal-play-badge {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  /* Lightbox supports both images and videos */
+  .lightbox video {
+    max-width: min(96vw, 1600px);
+    max-height: 88vh;
+    border-radius: 4px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+    background: #000;
+  }
 </style>
 </head>
 <body>
@@ -3157,14 +3202,28 @@
     </p>
   </div>
 
-      <div class="gallery-grid reveal-stagger">
+        <div class="gallery-grid reveal-stagger">
     <a class="gal-item gal-tall" href="https://dsingson5.github.io/hybrid-crew/images/students/race-finish-celebration.jpg" data-cap="Finish line &mdash; Hyrox Bangkok 2026">
       <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/race-finish-celebration-thumb.jpg" alt="Finish line, Hyrox Bangkok" />
       <div class="gal-cap"><span>Finish line</span><span class="gal-sub">Hyrox Bangkok 2026</span></div>
     </a>
+    <a class="gal-item gal-video" href="https://dsingson5.github.io/hybrid-crew/videos/kettlebell.mp4" data-cap="Kettlebell training &mdash; gym session">
+      <video autoplay muted loop playsinline preload="metadata" poster="https://dsingson5.github.io/hybrid-crew/videos/kettlebell-poster.jpg">
+        <source src="https://dsingson5.github.io/hybrid-crew/videos/kettlebell.mp4" type="video/mp4" />
+      </video>
+      <div class="gal-cap"><span>Kettlebell work</span><span class="gal-sub">Gym session &middot; play</span></div>
+      <div class="gal-play-badge">&#9658;</div>
+    </a>
     <a class="gal-item" href="https://dsingson5.github.io/hybrid-crew/images/students/race-sandbag-lunges.jpg" data-cap="Sandbag lunges &mdash; mid-race">
       <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/race-sandbag-lunges-thumb.jpg" alt="Sandbag lunges at Hyrox" />
       <div class="gal-cap"><span>Sandbag lunges</span><span class="gal-sub">Station 7 &middot; Hyrox</span></div>
+    </a>
+    <a class="gal-item gal-video gal-wide" href="https://dsingson5.github.io/hybrid-crew/videos/rowing.mp4" data-cap="Concept2 rowing &mdash; race-pace session">
+      <video autoplay muted loop playsinline preload="metadata" poster="https://dsingson5.github.io/hybrid-crew/videos/rowing-poster.jpg">
+        <source src="https://dsingson5.github.io/hybrid-crew/videos/rowing.mp4" type="video/mp4" />
+      </video>
+      <div class="gal-cap"><span>Concept2 rowing</span><span class="gal-sub">Race-pace &middot; play</span></div>
+      <div class="gal-play-badge">&#9658;</div>
     </a>
     <a class="gal-item" href="https://dsingson5.github.io/hybrid-crew/images/students/race-farmers-carry.jpg" data-cap="Farmer's carry &mdash; Hyrox Bangkok">
       <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/race-farmers-carry-thumb.jpg" alt="Farmer's carry, Hyrox" />
@@ -3178,6 +3237,13 @@
       <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/run-bangkok-street-thumb.jpg" alt="Bangkok street run" />
       <div class="gal-cap"><span>Street run</span><span class="gal-sub">Bangkok &middot; race week</span></div>
     </a>
+    <a class="gal-item gal-video" href="https://dsingson5.github.io/hybrid-crew/videos/indoor-run.mp4" data-cap="Indoor track student run">
+      <video autoplay muted loop playsinline preload="metadata" poster="https://dsingson5.github.io/hybrid-crew/videos/indoor-run-poster.jpg">
+        <source src="https://dsingson5.github.io/hybrid-crew/videos/indoor-run.mp4" type="video/mp4" />
+      </video>
+      <div class="gal-cap"><span>Track session</span><span class="gal-sub">Student run &middot; play</span></div>
+      <div class="gal-play-badge">&#9658;</div>
+    </a>
     <a class="gal-item gal-wide" href="https://dsingson5.github.io/hybrid-crew/images/students/crew-mrt.jpg" data-cap="Hybrid Crew on the way to the start">
       <img loading="lazy" src="https://dsingson5.github.io/hybrid-crew/images/students/crew-mrt-thumb.jpg" alt="Hybrid Crew on the MRT" />
       <div class="gal-cap"><span>The crew</span><span class="gal-sub">On the way to the start</span></div>
@@ -3188,6 +3254,8 @@
     </a>
   </div>
 </section>
+
+
 
 
 
@@ -4185,26 +4253,59 @@
     bkSetStatus('Opening ' + label + ' \u2014 tap SEND in the app to deliver. (Inquiry text is also copied to your clipboard.)');
   }
 
-  // ============= LIGHTBOX =============
+  // ============= LIGHTBOX (handles images + videos) =============
   document.querySelectorAll('.gal-item').forEach(function(item) {
     item.addEventListener('click', function(e) {
       e.preventDefault();
       const src = item.getAttribute('href');
       const cap = item.getAttribute('data-cap') || '';
       const lb = document.getElementById('lightbox');
-      const img = document.getElementById('lbImg');
-      const capEl = document.getElementById('lbCap');
-      if (lb && img) {
+      if (!lb) return;
+      // Clear any previous content
+      const inner = lb.querySelector('.lb-inner') || (function() {
+        const div = document.createElement('div');
+        div.className = 'lb-inner';
+        div.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;height:100%';
+        lb.insertBefore(div, lb.querySelector('.lb-cap'));
+        const oldImg = document.getElementById('lbImg');
+        if (oldImg) oldImg.remove();
+        return div;
+      })();
+      inner.innerHTML = '';
+      const isVideo = src && src.toLowerCase().endsWith('.mp4');
+      if (isVideo) {
+        const v = document.createElement('video');
+        v.src = src;
+        v.controls = true;
+        v.autoplay = true;
+        v.style.cssText = 'max-width:min(96vw,1600px);max-height:88vh;border-radius:4px';
+        inner.appendChild(v);
+      } else {
+        const img = document.createElement('img');
         img.src = src;
-        if (capEl) capEl.innerHTML = cap;
-        lb.classList.add('open');
+        img.style.cssText = 'max-width:min(96vw,1600px);max-height:88vh;object-fit:contain;border-radius:4px';
+        inner.appendChild(img);
       }
+      const capEl = document.getElementById('lbCap');
+      if (capEl) capEl.innerHTML = cap;
+      lb.classList.add('open');
     });
   });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       const lb = document.getElementById('lightbox');
-      if (lb) lb.classList.remove('open');
+      if (lb) {
+        lb.classList.remove('open');
+        const v = lb.querySelector('video');
+        if (v) v.pause();
+      }
+    }
+  });
+  document.getElementById('lightbox') && document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this || e.target.classList.contains('lb-close')) {
+      this.classList.remove('open');
+      const v = this.querySelector('video');
+      if (v) v.pause();
     }
   });
 
