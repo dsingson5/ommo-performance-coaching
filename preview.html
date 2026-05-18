@@ -2437,18 +2437,7 @@
     font-weight: 700;
   }
   /* The price-side column becomes a simple "Block details" placeholder */
-  .pkg-price-side::after {
-    content: 'Inquire for pricing';
-    display: block;
-    font-family: var(--f-display);
-    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
-    font-style: italic;
-    color: var(--ommo-blue, var(--green));
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    text-align: right;
-    margin-top: 0.4rem;
-  }
+
   /* Hide "Total value / Your price / Save" rows since the prices are gone */
   /* (already hidden via pkg-value-row.total/.your-price + pkg-bargain-badge) */
 
@@ -2466,6 +2455,72 @@
     .svc-inquire { font-size: 0.85rem; }
     .pkg-price-side::after { font-size: 1.3rem; }
   }
+
+  /* ===================== INQUIRE-FOR-PRICING LINKS ===================== */
+  .inquire-cta {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.45em;
+    text-decoration: none;
+    color: var(--ommo-blue, var(--green)) !important;
+    font-style: italic;
+    font-family: var(--f-serif);
+    cursor: pointer;
+    border: 1.5px solid var(--ommo-blue, var(--green));
+    border-radius: 4px;
+    padding: 0.42em 0.95em;
+    background: rgba(27, 45, 204, 0.06);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    line-height: 1.2;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+  .inquire-cta:hover {
+    background: var(--ommo-blue, var(--green)) !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(27, 45, 204, 0.22);
+  }
+  .inquire-cta:hover .inquire-arrow {
+    transform: translateX(3px);
+  }
+  .inquire-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+    font-style: normal;
+    font-family: var(--f-body);
+    font-weight: 600;
+  }
+  /* Service-card placement */
+  a.svc-inquire {
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  /* Sim-tier placement (smaller, sits in the price slot of each tier head) */
+  a.sim-tier-price {
+    font-size: 0.78rem;
+    padding: 0.32em 0.7em;
+  }
+  /* Package-card placement (the prominent one in the right column) */
+  .pkg-inquire-link {
+    margin-top: 0.4rem !important;
+    font-size: clamp(1rem, 1.6vw, 1.15rem) !important;
+    padding: 0.7em 1.2em !important;
+    align-self: flex-end;
+  }
+  .pkg-price-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  /* Mobile */
+  @media (max-width: 900px) {
+    .inquire-cta { font-size: 0.8rem; padding: 0.35em 0.75em; }
+    a.svc-inquire { font-size: 0.75rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -2806,7 +2861,7 @@
       <div class="service-head">
         <div class="service-no">— 01 —</div>
         <div class="service-title">Hyrox <span class="italic">Full Simulation</span></div>
-        <div class="service-price"><div class="svc-inquire">Inquire for pricing</div></div>
+        <div class="service-price"><a href="#book" class="svc-inquire inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a></div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2821,7 +2876,7 @@
             <div class="sim-tier">
               <div class="sim-tier-head">
                 <span class="sim-tier-name">Solo &middot; Open / Pro</span>
-                <span class="sim-tier-price">Inquire for pricing</span>
+                <a href="#book" class="sim-tier-price inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a>
               </div>
               <p>Full race coached one-on-one. Men's / Women's Open or Pro division standards.</p>
               <ul class="service-features">
@@ -2838,7 +2893,7 @@
             <div class="sim-tier">
               <div class="sim-tier-head">
                 <span class="sim-tier-name">Doubles &middot; Team of 2</span>
-                <span class="sim-tier-price">Inquire for pricing</span>
+                <a href="#book" class="sim-tier-price inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a>
               </div>
               <p>Same full race as a team of two. Built for partners prepping a Doubles category at Hyrox Bangkok, Singapore, or Manila.</p>
               <ul class="service-features">
@@ -2854,7 +2909,7 @@
             <div class="sim-tier">
               <div class="sim-tier-head">
                 <span class="sim-tier-name">Relay &middot; Team of 4</span>
-                <span class="sim-tier-price">Inquire for pricing</span>
+                <a href="#book" class="sim-tier-price inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a>
               </div>
               <p>Full simulation as a 4-person relay &mdash; each athlete owning a quarter of the race. Great for crews, team building, or race rehearsal.</p>
               <ul class="service-features">
@@ -2882,7 +2937,7 @@
       <div class="service-head">
         <div class="service-no">— 02 —</div>
         <div class="service-title">1-on-1 <span class="italic">Performance Coaching</span></div>
-        <div class="service-price"><div class="svc-inquire">Inquire for pricing</div></div>
+        <div class="service-price"><a href="#book" class="svc-inquire inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a></div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2920,7 +2975,7 @@
       <div class="service-head">
         <div class="service-no">— 03 —</div>
         <div class="service-title">Running <span class="italic">Coaching</span></div>
-        <div class="service-price"><div class="svc-inquire">Inquire for pricing</div></div>
+        <div class="service-price"><a href="#book" class="svc-inquire inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a></div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2957,7 +3012,7 @@
       <div class="service-head">
         <div class="service-no">— 04 —</div>
         <div class="service-title">Hybrid <span class="italic">Strength & Conditioning</span></div>
-        <div class="service-price"><div class="svc-inquire">Inquire for pricing</div></div>
+        <div class="service-price"><a href="#book" class="svc-inquire inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a></div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -2997,7 +3052,7 @@
       <div class="service-head">
         <div class="service-no">— 05 —</div>
         <div class="service-title">Lactate <span class="italic">Threshold Testing</span></div>
-        <div class="service-price"><div class="svc-inquire">Inquire for pricing</div></div>
+        <div class="service-price"><a href="#book" class="svc-inquire inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a></div>
         <div class="service-arrow">+</div>
       </div>
       <div class="service-body">
@@ -3066,7 +3121,7 @@
       </div>
     </div>
     <div class="pkg-price-side pkg-content" id="pkgPriceSide">
-      <div class="pkg-sessions" id="pkgSessions">4 SESSIONS &middot; ~2 WEEKS</div>
+      <div class="pkg-sessions" id="pkgSessions">4 SESSIONS &middot; ~2 WEEKS<a href="#book" class="pkg-inquire-link inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a></div>
       <div class="pkg-per" id="pkgPer">&#8369;2,800<span class="per-suffix">/ session</span></div>
       <div class="pkg-price"><span class="total-label">Total</span><span class="currency">&#8369;</span><span id="pkgPrice">11,200</span></div>
       <div class="pkg-savings" id="pkgSavings" style="visibility:hidden">&mdash;</div>
@@ -3118,7 +3173,7 @@
       </div>
     </div>
     <div class="pkg-price-side pkg-content" id="runPkgPriceSide">
-      <div class="pkg-sessions" id="runPkgSessions">4 SESSIONS &middot; ~2 WEEKS</div>
+      <div class="pkg-sessions" id="runPkgSessions">4 SESSIONS &middot; ~2 WEEKS<a href="#book" class="pkg-inquire-link inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a></div>
       <div class="pkg-per" id="runPkgPer">&#8369;2,300<span class="per-suffix">/ session</span></div>
       <div class="pkg-price"><span class="total-label">Total</span><span class="currency">&#8369;</span><span id="runPkgPrice">9,200</span></div>
       <div class="pkg-savings" id="runPkgSavings" style="visibility:hidden">&mdash;</div>
@@ -3170,7 +3225,7 @@
       </div>
     </div>
     <div class="pkg-price-side pkg-content" id="scPkgPriceSide">
-      <div class="pkg-sessions" id="scPkgSessions">4 SESSIONS &middot; ~2 WEEKS</div>
+      <div class="pkg-sessions" id="scPkgSessions">4 SESSIONS &middot; ~2 WEEKS<a href="#book" class="pkg-inquire-link inquire-cta">Inquire for pricing <span class="inquire-arrow">&rarr;</span></a></div>
       <div class="pkg-per" id="scPkgPer">&#8369;2,800<span class="per-suffix">/ session</span></div>
       <div class="pkg-price"><span class="total-label">Total</span><span class="currency">&#8369;</span><span id="scPkgPrice">11,200</span></div>
       <div class="pkg-savings" id="scPkgSavings" style="visibility:hidden">&mdash;</div>
